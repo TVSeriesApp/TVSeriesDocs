@@ -1,0 +1,27 @@
+{
+  "name": "tvdb-rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.13.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AyyKamp/tvdb-rest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AyyKamp/tvdb-rest/issues"
+  },
+  "homepage": "https://github.com/AyyKamp/tvdb-rest#readme"
+}
