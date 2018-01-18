@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var html;
 
 var middleware = function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -43,9 +45,6 @@ router.post('/', function (req, res) {
 });
 // RETURNS ALL THE uSERS IN THE DATABASE
 router.get('/', function (req, res) {
-    user.find({}, function (err, users) {
-        if (err) return res.status(500).send("There was a problem finding the users.");
-        res.status(200).send(users);
-    });
+    res.status(200).sendFile("./site.html", {root: __dirname });
 });
 module.exports = router;
