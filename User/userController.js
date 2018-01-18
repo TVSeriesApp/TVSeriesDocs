@@ -9,12 +9,12 @@ var middleware = function(req, res, next) {
 }
 
 router.use(bodyParser.urlencoded({ extended: true }),middleware);
-var User = require('./User');
+var user = require('./user');
 const TVDB = require('node-tvdb');
 const tvdb = new TVDB('C9081E62D92175EA');
 
 // ADD THIS PART
-// CREATES A NEW USER
+// CREATES A NEW uSER
 router.post('/', function (req, res) {
     var editedBody = req.body;
     if(Object.values(req.body) == "") {
@@ -31,7 +31,7 @@ router.post('/', function (req, res) {
             console.log(error)
         });
 
-    /*User.create({
+    /*user.create({
             name : req.body.name,
             email : req.body.email,
             password : req.body.password
@@ -41,9 +41,9 @@ router.post('/', function (req, res) {
             res.status(200).send(user);
         });*/
 });
-// RETURNS ALL THE USERS IN THE DATABASE
+// RETURNS ALL THE uSERS IN THE DATABASE
 router.get('/', function (req, res) {
-    User.find({}, function (err, users) {
+    user.find({}, function (err, users) {
         if (err) return res.status(500).send("There was a problem finding the users.");
         res.status(200).send(users);
     });
