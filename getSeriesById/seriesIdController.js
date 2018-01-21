@@ -15,14 +15,15 @@ var middleware = function(req, res, next) {
 router.use(bodyParser.urlencoded({ extended: true }),middleware);
 
 router.post('/', function (req, res) {
+    console.log("haha")
     var editedBody = req.body;
     if(Object.values(req.body) == "") {
         var editedBody = Object.keys(req.body)
         editedBody = JSON.parse(editedBody[0])
-    }    
+    } 
     
     
-    tvdb.getSeriesByName(editedBody.series_name)
+    tvdb.getSeriesById(editedBody.series_id)
     .then(response => {
             res.status(200).send(response);
         })
