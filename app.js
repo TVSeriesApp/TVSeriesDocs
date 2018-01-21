@@ -1,8 +1,7 @@
 let express = require('express');
 let app = express();
-let db = require('./db');
 
-var userController = require('./user/userController.js');
-app.use('/users', userController);
+var userController = require('./getSeriesByName/nameController.js');
+app.use('/getSeriesByName', userController);
 
 module.exports = app;
