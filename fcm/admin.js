@@ -1,18 +1,18 @@
 var admin = require("firebase-admin");
 
-var serviceAccount = require("./the-tv-series-app-firebase-adminsdk-k5va3-56ded94bc5.json");
+var serviceAccount = require("./the-tv-series-app-firebase-adminsdk.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://the-tv-series-app.firebaseio.com"
 });
 
-var registrationToken = "euaTN6kHWzs:APA91bF7vckyE5_geM63f5vtWicWKI2PZUwqPmdnJG_ITOLSqTeLqH1HkrP0JAduhVa_Yz4n9iNimCl4mC4AgLrRJKhkHq4wl9S8bU_KpRARW2XgHanWgG8yAJvHpm-xiVXBPKDTjJNB";
+/*var registrationToken = "euaTN6kHWzs:APA91bGBRO2osv_jf4KhSF9bbN2_Me7LeS04wnMp2lSSwIYxSoVKpwzKd142UITBQQ1S18XwZC9qAcw0J74Ffd-35TwiM_KOUCPvQ3iVJpYyot8LOHH_SQpJ-lhsAbzrfQHoX9gqDsIg";
 
 var payload = {
   notification: {
     title: "Fedor",
-    body: "If you read this, msg me on discord!!!!"
+    body: "Accident 💩!!!!"
   }
 };
 
@@ -27,4 +27,5 @@ admin.messaging().sendToDevice(registrationToken, payload, options)
   })
   .catch(function(error) {
     console.log("Error sending message:", error);
-  });
+  });*/
+module.exports = admin;  

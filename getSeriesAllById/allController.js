@@ -23,16 +23,17 @@ router.post('/', function (req, res) {
     } 
     
     
-    tvdb.getSeriesById(editedBody.series_id)
+    tvdb.getSeriesAllById(editedBody.series_id_all)
     .then(response => {
-            res.status(200).send(response);
-        })
-        .catch(error => {
-            console.log(error)
-        });
+        res.status(200).send(response);
+        res.status(200).send(response.episodes);
+    })
+    .catch(error => {console.log(error)});
+
 });
 
 router.get('/', function (req, res) {
     res.status(200).sendFile(path.join(__dirname + "/../html/site.html"));
 });
+
 module.exports = router;

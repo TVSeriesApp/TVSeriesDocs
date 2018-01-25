@@ -13,6 +13,6 @@
   },
   "scripts": {
     "test": "node ./fcm/admin.js",
-    "start": "node ./fcm/admin.js"
+    "start": "nodemon server.js"
   }
 }
