@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-
+var path = require('path');
 let tvdb = require(__dirname + '/../tvdb');
 
 var html;
@@ -32,6 +32,6 @@ router.post('/', function (req, res) {
 });
 
 router.get('/', function (req, res) {
-    res.status(200).sendFile("./site.html", {root: __dirname });
+    res.status(200).sendFile(path.join(__dirname + "/../html/site.html"));
 });
 module.exports = router;
