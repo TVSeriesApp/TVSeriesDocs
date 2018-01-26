@@ -24,7 +24,20 @@ router.post('/', function (req, res) {
     }
 
     var registrationToken = editedBody.token;
+    
     var payload = {
+        notification: {
+          title: "Fedor",
+          body: "Accident 💩!!!!"
+        }
+      };
+      
+      var options = {
+        priority: "high",
+        timeToLive: 60 * 60 *24
+      };
+
+    /*var payload = {
         notification: {
             title: editedBody.title,
             body: editedBody.body
@@ -34,7 +47,7 @@ router.post('/', function (req, res) {
     var options = {
         priority: editedBody.priority,
         timeToLive: JSON.parse(editedBody.timetolive)
-    };
+    };*/
 
     admin.messaging().sendToDevice(registrationToken, payload, options)
         .then(function (response) {
