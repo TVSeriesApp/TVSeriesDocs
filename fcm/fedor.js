@@ -38,11 +38,11 @@ router.post('/', function (req, res) {
 
     admin.messaging().sendToDevice(registrationToken, payload, options)
         .then(function (response) {
-            //console.log("Successfully sent message:", response.results[0]);
+            console.log("Successfully sent message:", response.results[0]);
             res.status(200).send("Message Sent!");
         })
         .catch(function (error) {
-            //console.log("Error sending message:", error);
+            console.log("Error sending message:", error);
             res.status(500).send("An error occured. Blame Konrad <br>" + error);
         });
 
