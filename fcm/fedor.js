@@ -26,24 +26,24 @@ router.post('/', function (req, res) {
     var registrationToken = editedBody.token;
     var payload = {
         notification: {
-            title: "Fedor",
-            body: "lmao anime amirite!!!!"
+            title: editedBody.title,
+            body: editedBody.body
         }
     };
 
     var options = {
-        priority: "high",
-        timeToLive: 60 * 60 * 24
+        priority: editedBody.priority,
+        timeToLive: JSON.parse(editedBody.timetolive)
     };
 
     admin.messaging().sendToDevice(registrationToken, payload, options)
         .then(function (response) {
-            console.log("Successfully sent message:", response.results[0]);
-            res.status(200).send("it worked. (hopefully monkaS)");
+            //console.log("Successfully sent message:", response.results[0]);
+            res.status(200).send("Message Sent!");
         })
         .catch(function (error) {
-            console.log("Error sending message:", error);
-            res.status(500).send("An error occured. Blame Konrad");
+            //console.log("Error sending message:", error);
+            res.status(500).send("An error occured. Blame Konrad <br>" + error);
         });
 
     console.log(editedBody);

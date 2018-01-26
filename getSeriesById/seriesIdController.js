@@ -28,7 +28,8 @@ router.post('/', function (req, res) {
             res.status(200).send(response);
         })
         .catch(error => {
-            console.log(error)
+            console.log(error);
+            res.status(500).send("An error occured. Blame Konrad");
         });
 });
 
