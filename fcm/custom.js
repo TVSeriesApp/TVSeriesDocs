@@ -38,7 +38,7 @@ router.post('/', function (req, res) {
       };*/
 
     var payload = {
-        notification: {
+        data: {
             title: editedBody.title,
             body: editedBody.body
         }
