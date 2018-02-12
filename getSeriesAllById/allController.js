@@ -23,10 +23,9 @@ router.post('/', function (req, res) {
     } 
     
     
-    tvdb.getSeriesAllById(editedBody.series_id_all)
+    tvdb.getSeriesAllById(editedBody.series_id)
     .then(response => {
         res.status(200).send(response);
-        res.status(200).send(response.episodes);
     })
     .catch(error => {console.log(error)});
 
