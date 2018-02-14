@@ -2,7 +2,7 @@
 
 ---
 
-# Einführung
+## Einführung
 
 > Um die benötigten Daten für unsere App zu bekommen benutzen wir die für die kostenlos benutzbare [tv-db API](https://api.thetvdb.com/swagger). 
 
