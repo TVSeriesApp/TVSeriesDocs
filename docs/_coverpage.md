@@ -7,8 +7,8 @@
 * Maxim mach mal was
 * Multiple themes
 
-[GitHub](https://github.com/AyyKamp/tvdb-rest)
-[GitHub2](https://github.com/massenmensch/TheTVSeriesApp)
+[GitHub Backend](https://github.com/AyyKamp/tvdb-rest)
+[GitHub Frontend + Notifs](https://github.com/massenmensch/TheTVSeriesApp)
 [Get Started](yes.png)
 
 ![](https://media.discordapp.net/attachments/410171118310391808/410550886096568331/unknown.png)
