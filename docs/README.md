@@ -4,7 +4,7 @@
 
 ## Einführung
 
-> Um die benötigten Daten für unsere App zu bekommen benutzen wir die für die kostenlos benutzbare [tv-db API](https://www.google.com). 
+> Um die benötigten Daten für unsere App zu bekommen benutzen wir die für die kostenlos benutzbare [tv-db API](https://api.thetvdb.com/swagger). 
 
 > Allerdings hatten wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) Protokolls. 
 > Dies liegt daran, das der tv-db Server bei  HTTP requests keine CORS Header sendet.
