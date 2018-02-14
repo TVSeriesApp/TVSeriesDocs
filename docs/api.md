@@ -19,8 +19,6 @@ Beispiel:
 
 ## Endpoints für die API
 
-***
-
 ### /getSeriesByName
 
 
