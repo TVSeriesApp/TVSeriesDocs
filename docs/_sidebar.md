@@ -1,4 +1,4 @@
 * [Get Started](/)
 * [API](api.md)
-* [Notfications](notfications.md)
+* [Notifications](notifications.md)
 * [GUI](gui.md)
