@@ -1,4 +1,4 @@
-* [Get Started](readme.md)
+* [Get Started](#Info)
 * [API](api.md)
 * [Notifications](notifications.md)
 * [GUI](gui.md)
