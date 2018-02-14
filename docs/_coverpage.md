@@ -8,7 +8,7 @@
 * Multiple themes
 
 [GitHub Backend](https://github.com/AyyKamp/tvdb-rest)
-[Get Started](yes.png)
 [GitHub Frontend + Notifs](https://github.com/massenmensch/TheTVSeriesApp)
+[Get Started](yes.png)
 
 ![](https://media.discordapp.net/attachments/410171118310391808/410550886096568331/unknown.png)
