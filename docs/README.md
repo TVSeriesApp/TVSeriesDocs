@@ -16,20 +16,20 @@ Das Kostenziel beträgt 0€ (bei Nicht-Publizierung der App im PlayStore).
 ## Anforderungen
 
 ### Muss:
-Erstellen eines lauffähigen App-Grundgerüstes
-Anzeige eines Suchfelds für Serien
-Ergebnisanzeige für Suchanfragen mit Ergebnissen aus der „thetvdb.com“-Datenbank
-Gestaltung der App nach Grundlagen des Material Design
-Empfangen von Push-Notifications (und Anzeigen derselben über den Push-Service)
+* Erstellen eines lauffähigen App-Grundgerüstes
+* Anzeige eines Suchfelds für Serien
+* Ergebnisanzeige für Suchanfragen mit Ergebnissen aus der „thetvdb.com“-Datenbank
+* Gestaltung der App nach Grundlagen des Material Design
+* Empfangen von Push-Notifications (und Anzeigen derselben über den Push-Service)
 ### Soll:
-Mögliches Hinzufügen von Serien auf eine persönliche „Watching-Liste“
-Automatisiertes Empfangen von Push-Notifications je nach individueller Serienliste und Air Time 
-neuer Folgen von auf dieser Liste enthaltenen Serien
-Teilen der eigenen Serienliste über verschiedene Medien mithilfe eines „Share-Buttons“
+* Mögliches Hinzufügen von Serien auf eine persönliche „Watching-Liste“
+* Automatisiertes Empfangen von Push-Notifications je nach individueller Serienliste und Air Time 
+* neuer Folgen von auf dieser Liste enthaltenen Serien
+* Teilen der eigenen Serienliste über verschiedene Medien mithilfe eines „Share-Buttons“
 ### Kann:
-Veröffentlichung der App im Google PlayStore
-Implementierung eines Einstellungsmenüs mit u.A. den folgenden Optionen:
-Löschen des Suchverlaufes
-Ändern des Farbschemas
-Nutzerregistrierung bzw. Accountspezifische Listen
-Serienempfehlungen auf der Startseite der App (z.B. bestbewertete Serien diesen Monat)
+* Veröffentlichung der App im Google PlayStore
+* Implementierung eines Einstellungsmenüs mit u.A. den folgenden Optionen:
+* Löschen des Suchverlaufes
+* Ändern des Farbschemas
+* Nutzerregistrierung bzw. Accountspezifische Listen
+* Serienempfehlungen auf der Startseite der App (z.B. bestbewertete Serien diesen Monat)
