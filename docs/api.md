@@ -71,27 +71,27 @@ Response JSON bestehend aus detaillierter Information zur Serie.
 ```javascript
 {
     "id": 278339,
-    "seriesName": "seriesName": /*Name der Serie*/,,
+    "seriesName": /*Name der Serie*/,
     "aliases": /*Array aus Alias*/,
     "banner": /*URL zu einer Banner Graphik*/,
     "seriesId": /*ID der Serie*/,
-    "status": "status": /*Status der Series: "continuing" oder "ended"*/,
+    "status": /*Status der Series: "continuing" oder "ended"*/,
     "firstAired": /*Datum der erstmaligen Austrahlung*/,
     "network": /*Fernsehnetzwerk der Serie*/,
     "networkId": /*ID des Fernsehnetzwerk der Serie*/,
-    "runtime": "60",
-    "genre": [],
-    "overview": "overview": /*Überblick zum den Inhalt der Serie*/,
-    "lastUpdated": 1446420667,
-    "airsDayOfWeek": "Friday",
-    "airsTime": "10:00 PM",
-    "rating": "",
-    "imdbId": "tt3780362",
-    "zap2itId": "",
-    "added": "2014-02-08 19:49:27",
-    "addedBy": 40611,
-    "siteRating": 7.3,
-    "siteRatingCount": 4
+    "runtime": /*Laufzeit der Serie pro Episode*/,
+    "genre": /*Array aus Genres*/,
+    "overview": /*Überblick zum den Inhalt der Serie*/,
+    "lastUpdated": /*Datum des letzten Updates dieses Dokuments*/,
+    "airsDayOfWeek": /*Wochentag, an dem die Serie läuft*/,
+    "airsTime": "/*Uhrzeit zu der die Serie läuft*/",
+    "rating": /*IMDb rating*/,
+    "imdbId": /*IMDb ID*/,
+    "zap2itId": /*Zap2 ID*/,
+    "added": /*Datum, an dem die Serie zur Datenbank hinzugefügt wurde*/,
+    "addedBy": /*ID des Benutzers, der die Serie zur Datenbank hinzugefügt hat*/,
+    "siteRating": /*Rating auf thetvdb.com*/,
+    "siteRatingCount": /*Anzahl der ratings auf tvdb.com*/
 }
 ```
 
