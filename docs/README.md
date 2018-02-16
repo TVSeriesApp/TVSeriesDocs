@@ -23,8 +23,7 @@ Das Kostenziel beträgt 0€ (bei Nicht-Publizierung der App im PlayStore).
 * Empfangen von Push-Notifications (und Anzeigen derselben über den Push-Service)
 ### Soll:
 * Mögliches Hinzufügen von Serien auf eine persönliche „Watching-Liste“
-* Automatisiertes Empfangen von Push-Notifications je nach individueller Serienliste und Air Time 
-* neuer Folgen von auf dieser Liste enthaltenen Serien
+* Automatisiertes Empfangen von Push-Notifications je nach individueller Serienliste und Air Time neuer Folgen von auf dieser Liste enthaltenen Serien
 * Teilen der eigenen Serienliste über verschiedene Medien mithilfe eines „Share-Buttons“
 ### Kann:
 * Veröffentlichung der App im Google PlayStore
