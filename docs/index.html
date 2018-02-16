@@ -17,10 +17,20 @@
       auto2top: true,
       coverpage: true,
       loadSidebar: true,
+      maxLevel: 4,
       subMaxLevel: 2,
+      search: {
+        noData: {
+          '/': 'Keine Ergebnisse!'
+        },
+        paths: 'auto',
+        placeholder: {
+          '/': 'Suche'
+        }
+      }
   }
   </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
 </body>
 </html>
