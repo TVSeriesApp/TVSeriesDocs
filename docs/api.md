@@ -94,5 +94,47 @@ Response JSON bestehend aus detaillierter Information zur Serie.
     "siteRatingCount": /*Anzahl der ratings auf tvdb.com*/
 }
 ```
+### /getSeriesAllById
 
 
+**POST**
+
+Sucht nach einer Serie mithilfe des Parameters series_name.
+
+JSON Objekt welches mithilfe von POST geschickt wird.
+
+```javascript
+{
+    "series_id":/*ID der Serie*/
+}
+```
+
+Response JSON bestehend aus einem Array aus Ergebnissen.
+
+```javascript
+{
+    "id": 278339,
+    "seriesName": /*Name der Serie*/,
+    "aliases": /*Array aus Alias*/,
+    "banner": /*URL zu einer Banner Graphik*/,
+    "seriesId": /*ID der Serie*/,
+    "status": /*Status der Series: "continuing" oder "ended"*/,
+    "firstAired": /*Datum der erstmaligen Austrahlung*/,
+    "network": /*Fernsehnetzwerk der Serie*/,
+    "networkId": /*ID des Fernsehnetzwerk der Serie*/,
+    "runtime": /*Laufzeit der Serie pro Episode*/,
+    "genre": /*Array aus Genres*/,
+    "overview": /*Überblick zum den Inhalt der Serie*/,
+    "lastUpdated": /*Datum des letzten Updates dieses Dokuments*/,
+    "airsDayOfWeek": /*Wochentag, an dem die Serie läuft*/,
+    "airsTime": "/*Uhrzeit zu der die Serie läuft*/",
+    "rating": /*IMDb rating*/,
+    "imdbId": /*IMDb ID*/,
+    "zap2itId": /*Zap2 ID*/,
+    "added": /*Datum, an dem die Serie zur Datenbank hinzugefügt wurde*/,
+    "addedBy": /*ID des Benutzers, der die Serie zur Datenbank hinzugefügt hat*/,
+    "siteRating": /*Rating auf thetvdb.com*/,
+    "siteRatingCount": /*Anzahl der ratings auf tvdb.com*/
+    "episodes": 
+}
+```
