@@ -10,4 +10,4 @@
 
 ## FCM Notifications
 
-[](https://firebase.google.com/docs/cloud-messaging/images/messaging-overview.png)
+![](https://firebase.google.com/docs/cloud-messaging/images/messaging-overview.png)
