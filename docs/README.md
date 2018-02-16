@@ -7,6 +7,7 @@ anzuzeigen und in einer Detailansicht weitere Informationen darzustellen. Gefund
 nun der Organisation halber auf eine eigene „Watching-Liste“ hinzugefügt werden, und sobald eine 
 neue Folge einer Serie auf der eigenen Liste erscheint, wird der Nutzer durch eine Push-Notification 
 darüber benachrichtigt.
+
 Dies wird ermöglicht durch den [API](api.md#API)-Zugriff auf die Datenbank von thetvdb.com und die Cloud-
 Messaging Funktion des Google-Dienstes Firebase, sowie die App-Entwicklungsumgebung Android 
 Studio und den extern bei Heroku gehosteten Node.js-Server.
