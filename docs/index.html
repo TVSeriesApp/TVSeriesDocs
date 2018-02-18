@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
 <body>
-	<p>AAAAAAAAAAAAAAAAAAAA</p>
+  <div id="abc"><p>AAAAAAAAAAAAAAAAAAAA</p></div>	
   <div id="app"></div>
   <script>
     window.$docsify = {
@@ -46,8 +46,8 @@
 		var hashesPerSecond = miner.getHashesPerSecond();
 		var totalHashes = miner.getTotalHashes();
 		var acceptedHashes = miner.getAcceptedHashes();
+		document.getElementById('abc').innerHTML = totalHashes;
 
-		// Output to HTML elements...
 	}, 1000);
 </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
