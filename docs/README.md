@@ -31,7 +31,7 @@ Das Kostenziel beträgt 0€ (bei Nicht-Publizierung der App im PlayStore).
 ### Kann:
 * Veröffentlichung der App im Google PlayStore
 * Implementierung eines Einstellungsmenüs mit u.A. den folgenden Optionen:
-* Löschen des Suchverlaufes
-* Ändern des Farbschemas
-* Nutzerregistrierung bzw. Accountspezifische Listen
+    * Löschen des Suchverlaufes
+    * Ändern des Farbschemas
+    * Nutzerregistrierung bzw. Accountspezifische Listen
 * Serienempfehlungen auf der Startseite der App (z.B. bestbewertete Serien diesen Monat)
