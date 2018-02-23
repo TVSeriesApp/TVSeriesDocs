@@ -1,6 +1,6 @@
 <!-- ![](yes.png) -->
 
-![logo](favicon.ico)
+![logo](flag-of-uganda.png)
 
 # The TV Series App <small>0.12</small>
 
