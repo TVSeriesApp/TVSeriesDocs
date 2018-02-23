@@ -19,7 +19,9 @@ Beispiel:
 
 ## Endpoints für die API
 
-### /getSeriesByName
+### Interaktion mit thetvdb.com
+
+#### /getSeriesByName
 
 **POST**
 
@@ -52,7 +54,7 @@ Response JSON bestehend aus einem Array aus Ergebnissen.
 ]
 ```
 
-### /getSeriesById
+#### /getSeriesById
 
 **POST**
 
@@ -95,7 +97,7 @@ Response JSON bestehend aus detaillierter Information zur Serie.
 }
 ```
 
-### /getEpisodesBySeriesId
+#### /getEpisodesBySeriesId
 
 **POST**
 
@@ -135,7 +137,7 @@ Response JSON bestehend aus einem Array aus Episoden.
         //weitere Episoden
 }
 ```
-### /getLatestEpisodeById
+#### /getLatestEpisodeById
 
 **POST**
 
@@ -168,5 +170,32 @@ Response JSON bestehend aus einer Episode
             },
             "lastUpdated": /*Zeitpunkt des letzten Updates*/,
             "overview": /*Überblick über die Handlung*/        
+}
+```
+
+### Interaktion mit Firebase
+
+#### /fcm
+
+**POST**
+
+Schickt eine Notification mithilfe von [fcm](https://firebase.google.com/products/cloud-messaging/).
+
+JSON Objekt welches mithilfe von POST geschickt wird.
+
+```javascript
+{
+    "token":/*ID der Serie*/,
+    "title":/*Titel der Notification*/,
+    "body":/*Inhalt der Notification*/,
+    "priority":/*Priorität ("high" oder "low")*/
+}
+```
+
+Response bei erfolgreichem Senden der Notification.
+
+```html
+{
+   Message sent!                 
 }
 ```
