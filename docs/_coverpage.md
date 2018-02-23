@@ -1,6 +1,6 @@
 <!-- ![](yes.png) -->
 
-![logo](yes.png)
+![logo](favicon.ico)
 
 # The TV Series App <small>0.12</small>
 
