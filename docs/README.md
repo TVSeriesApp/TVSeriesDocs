@@ -35,3 +35,8 @@ Das Kostenziel beträgt 0€ (bei Nicht-Publizierung der App im PlayStore).
     * Ändern des Farbschemas
     * Nutzerregistrierung bzw. Accountspezifische Listen
 * Serienempfehlungen auf der Startseite der App (z.B. bestbewertete Serien diesen Monat)
+
+
+## App-Download
+
+Die App ist momentan nur auf [Github](https://github.com/massenmensch/TheTVSeriesApp/releases) herunterzuladen.
