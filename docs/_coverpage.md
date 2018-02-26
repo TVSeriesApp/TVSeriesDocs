@@ -8,7 +8,7 @@
 
 * Konrad
 * Maxim mach mal was
-* Fedor's mum is a very gay
+* Multiple Themes
 
 [GitHub Backend](https://github.com/AyyKamp/tvdb-rest)
 [GitHub Frontend + Notifs](https://github.com/massenmensch/TheTVSeriesApp)
