@@ -1,7 +1,5 @@
 <!-- ![](yes.png) -->
 
-![logo](flag-of-uganda.png)
-
 # The TV Series App <small>0.12</small>
 
 > The ~~102412th~~ **only** App to get notifications about your favorite ~~animus~~ TV shows!
