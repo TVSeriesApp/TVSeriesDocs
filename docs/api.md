@@ -118,17 +118,17 @@ Response JSON bestehend aus einem Array aus Episoden.
     [
         {
             "absoluteNumber": /*Episodennummer*/,
-            "airedEpisodeNumber": /*Episodennummer*/,
-            "airedSeason": /*Staffel*/,
+            "airedEpisodeNumber": /*Nummer der Episode, die als letztes erschienen ist*/,
+            "airedSeason": /*Die Staffel, in der die Episode erschienen ist*/,
             "airedSeasonID": /*ID der Staffel*/,
             "dvdEpisodeNumber": /*DVD Episodennummer*/,
             "dvdSeason": /*DVD Staffel*/,
             "episodeName": /*Name der Episode*/,
-            "firstAired": /*Datum der erstmaligen Austrahlung*/,
+            "firstAired": /*Datum der Erstausstrahlung dieser Episode*/,
             "id": /*ID der Episode*/,
             "language": {
-                "episodeName": /*Sprache des Episodennames*/,
-                "overview": /*Sprache des Überblicks*/
+                "episodeName": /*Sprache des Episodennamens*/,
+                "overview": /*Sprache des Überblicks über den Inhalt*/
             },
             "lastUpdated": /*Zeitpunkt des letzten Updates*/,
             "overview": /*Überblick über die Handlung*/        
@@ -169,7 +169,7 @@ Response JSON bestehend aus einer Episode
                 "overview": /*Sprache des Überblicks*/
             },
             "lastUpdated": /*Zeitpunkt des letzten Updates*/,
-            "overview": /*Überblick über die Handlung*/        
+            "overview": /*Überblick über die Handlung der Episode*/        
 }
 ```
 
@@ -192,7 +192,7 @@ JSON Objekt welches mithilfe von POST geschickt wird.
 }
 ```
 
-Response bei erfolgreichem Senden der Notification.
+Rückmeldung bei erfolgreichem Senden der Notification.
 
 ```html
 {
