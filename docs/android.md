@@ -11,7 +11,7 @@
 
 ## FCM Notifications
 
->Damit Benutzer der App Benachrichtigungen erhaten können, muss der im Hintergrund laufende Notification-Service von Android angesprochen werden. Dies geschieht mithilfe von Firebase Cloud Messaging, einem Online-Service bereitgestellt von Google.
+>Damit Benutzer der App Benachrichtigungen erhalten können, muss der im Hintergrund laufende Notification-Service von Android angesprochen werden. Dies geschieht mithilfe von Firebase Cloud Messaging, einem Online-Service bereitgestellt von Google.
 
 Wenn aus der App eine Anfrage für eine Notification (z.B. durch das Hinzufügen einer Serie in die eigene Watchlist) an unseren Server über eine HTTP-POST-Anfrage gesendet wird, reagiert dieser durch eine eigene Push-Benachrichtigung via Firebase.
 
