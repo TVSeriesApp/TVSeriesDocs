@@ -5,7 +5,7 @@
 Entwicklungsziel ist eine Android-App, die es ermöglicht nach Serien zu suchen, Ergebnisse 
 anzuzeigen und in einer Detailansicht weitere Informationen darzustellen. Gefundene Serien können 
 nun der Organisation halber auf eine eigene „Watching-Liste“ hinzugefügt werden, und sobald eine 
-neue Folge einer Serie auf der eigenen Liste erscheint, wird der Nutzer durch eine [Push-Notification](notifications.md#Notifications) 
+neue Folge einer Serie auf der eigenen Liste erscheint, wird der Nutzer durch eine [Push-Notification](android.md#Notifications) 
 darüber benachrichtigt.
 
 Dies wird ermöglicht durch den [API](api.md#API)-Zugriff auf die Datenbank von thetvdb.com und die Cloud-
