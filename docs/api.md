@@ -135,6 +135,7 @@ Response JSON bestehend aus einem Array aus Episoden.
         },
         //...
         //weitere Episoden
+    ]
 }
 ```
 #### /getLatestEpisodeById
