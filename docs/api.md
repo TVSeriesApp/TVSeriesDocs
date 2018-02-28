@@ -47,7 +47,7 @@ Response JSON bestehend aus einem Array aus Ergebnissen.
         "network": /*Fernsehnetzwerk der Serie*/,
         "overview": /*Überblick über den Inhalt der Serie*/,
         "seriesName": /*Name der Serie*/,
-        "status": /*Status der Series: "continuing" oder "ended"*/
+        "status": /*Status der Series: "continuing" (dt. fortlaufend) oder "ended" (dt. beendet)*/
     },
     //...
     //weitere Ergebnisse
