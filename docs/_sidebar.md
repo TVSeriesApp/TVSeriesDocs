@@ -1,4 +1,4 @@
 * [Einführung](README.md)
 * [API](api.md)
-* [Notifications](notifications.md)
+* [Android](android.md)
 * [GUI](gui.md)
