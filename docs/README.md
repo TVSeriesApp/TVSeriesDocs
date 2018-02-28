@@ -14,7 +14,8 @@ Studio und den extern bei Heroku gehosteten Node.js-Server.
 Das Kostenziel beträgt 0€ (bei Nicht-Publizierung der App im PlayStore).
 
 >Anwendungsbeispiel
-Konrad guckt die Serie Frauentausch und möchte über neue Veröffentlichungen auf dem Laufenden gehalten werden. Er benutzt die App, um sich Benachrichtigungen schickeb zu lassen, sobald eine neue Folge publiziert wird. Dies tut er indem er in der Suchansicht die Detailseite der Serie aufruft, und sie zu seiner persönlichen "Watchlist" hinzufügt.
+
+>Konrad guckt die Serie Frauentausch und möchte über neue Veröffentlichungen auf dem Laufenden gehalten werden. Er benutzt die App, um sich Benachrichtigungen schickeb zu lassen, sobald eine neue Folge publiziert wird. Dies tut er indem er in der Suchansicht die Detailseite der Serie aufruft, und sie zu seiner persönlichen "Watchlist" hinzufügt.
 
 
 ## Anforderungen
