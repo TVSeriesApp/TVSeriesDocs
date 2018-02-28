@@ -35,7 +35,7 @@ JSON Objekt welches mithilfe von POST geschickt wird.
 }
 ```
 
-Response JSON bestehend aus einem Array aus Ergebnissen.
+Response JSON bestehend aus einer Liste aus Ergebnissen.
 
 ```javascript
 [
@@ -179,20 +179,20 @@ Response JSON bestehend aus einer Episode
 
 **POST**
 
-Schickt eine Notification mithilfe von [fcm](https://firebase.google.com/products/cloud-messaging/).
+Schickt eine Benachrichtigung mithilfe von [fcm](https://firebase.google.com/products/cloud-messaging/).
 
 JSON Objekt welches mithilfe von POST geschickt wird.
 
 ```javascript
 {
     "token":/*ID der Serie*/,
-    "title":/*Titel der Notification*/,
-    "body":/*Inhalt der Notification*/,
+    "title":/*Titel der Benachrichtigung*/,
+    "body":/*Inhalt der Benachrichtigung*/,
     "priority":/*Priorität ("high" oder "low")*/
 }
 ```
 
-Rückmeldung bei erfolgreichem Senden der Notification.
+Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 
 ```html
 {
