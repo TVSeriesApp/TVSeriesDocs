@@ -40,14 +40,14 @@ Response JSON bestehend aus einem Array aus Ergebnissen.
 ```javascript
 [
     {
-        "aliases": /*Array aus Alias*/,
-        "banner": /*URL zu einer Banner Graphik*/,
+        "aliases": /*Liste aus Alias*/,
+        "banner": /*URL einer Grafik, die als Teaser-Banner dient*/,
         "firstAired": /*Datum der erstmaligen Austrahlung*/,
         "id": /*ID der Serie*/,
         "network": /*Fernsehnetzwerk der Serie*/,
         "overview": /*Überblick über den Inhalt der Serie*/,
         "seriesName": /*Name der Serie*/,
-        "status": /*Status der Series: "continuing" (dt. fortlaufend) oder "ended" (dt. beendet)*/
+        "status": /*Statu der Series: "fortlaufend" oder "beendet"*/
     },
     //...
     //weitere Ergebnisse
@@ -74,26 +74,26 @@ Response JSON bestehend aus detaillierter Information zur Serie.
 {
     "id": /*ID der Serie*/,
     "seriesName": /*Name der Serie*/,
-    "aliases": /*Array aus Alias*/,
-    "banner": /*URL zu einer Banner Graphik*/,
+    "aliases": /*Liste aus Alias*/,
+    "banner": /*URL einer Grafik, die als Teaser-Banner dient*/,
     "seriesId": /*ID der Serie*/,
-    "status": /*Status der Series: "continuing" oder "ended"*/,
-    "firstAired": /*Datum der erstmaligen Austrahlung*/,
+    "status": /*Status der Serie: "fortlaufend" oder "beendet"*/,
+    "firstAired": /*Datum der Erstausstrahlung*/,
     "network": /*Fernsehnetzwerk der Serie*/,
     "networkId": /*ID des Fernsehnetzwerk der Serie*/,
     "runtime": /*Laufzeit der Serie pro Episode*/,
-    "genre": /*Array aus Genres*/,
-    "overview": /*Überblick zum den Inhalt der Serie*/,
+    "genre": /*Liste der Genres*/,
+    "overview": /*Überblick über den Inhalt der Serie*/,
     "lastUpdated": /*Datum des letzten Updates dieses Dokuments*/,
     "airsDayOfWeek": /*Wochentag, an dem die Serie läuft*/,
-    "airsTime": /*Uhrzeit zu der die Serie läuft*/,
-    "rating": /*IMDb rating*/,
-    "imdbId": /*IMDb ID*/,
-    "zap2itId": /*Zap2 ID*/,
+    "airsTime": /*Uhrzeit, zu der die Serie läuft*/,
+    "rating": /*Bewertung in der Internet Movie Database*/,
+    "imdbId": /*ID in der Internet Movie Database*/,
+    "zap2itId": /*ID in der Zap2 database*/,
     "added": /*Datum, an dem die Serie zur Datenbank hinzugefügt wurde*/,
     "addedBy": /*ID des Benutzers, der die Serie zur Datenbank hinzugefügt hat*/,
-    "siteRating": /*Rating auf thetvdb.com*/,
-    "siteRatingCount": /*Anzahl der ratings auf tvdb.com*/
+    "siteRating": /*Bewertung auf thetvdb.com*/,
+    "siteRatingCount": /*Anzahl der Bewertungen auf tvdb.com*/
 }
 ```
 
