@@ -4,18 +4,40 @@
 
 ## Einführung
 
-> Um die benötigten Daten für unsere App zu bekommen benutzen wir die für die kostenlos benutzbare [tv-db API](https://api.thetvdb.com/swagger).
+> Um die benötigten Daten für unsere App zu bekommen benutzen wir die für die kostenlos benutzbare [tv-db API](https://api.thetvdb.com/swagger). Bei dieser handelt es sich um eine kostenlose Datenbank, welche Informationen zu vielen Serien in 32 verschiedenen Sprachen bereitstellt.
 
-> Allerdings hatten wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) Protokolls.
-> Dies liegt daran, das der tv-db Server bei HTTP requests keine CORS Header sendet.
+> Allerdings hatte ich Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) Protokolls.  Also stellte ich [eine Frage auf der Q&A Seite Stackoverflow](https://stackoverflow.com/questions/48272135/how-do-i-avoid-getting-the-http-status-code-405). DIe erhaltenen Antoworten halfen mir sehr bei der Lösung des Problems
 
-> Um dieses Problem zu umgehen entschieden wir uns dazu eine eigene API (die CORS header sendet) zu schreiben, die nur als Umleitung zu der tv-db API dient.
+> Um das Problem zu lösen entschied ich mich dazu einen eigenen Server zu erstellen, welcher die Anfragen an die TVDB Server weiterleitet. 
 
-Die API wird auf [heroku](https://heroku.com) gehostet. Die URL lautet [tvdb-rest.herokuapp.com](https://tvdb-rest.herokuapp.com/).
+Cih entschied mich für die Plattform [node.js][node] und das [framework][frame] [express.js][http://expressjs.com/], da ich einerseits schon [ein wenig Erfahrung][Disbot] mit node.js hatte und andererseits express.js sehr einsteigerfreundlich erschien. 
+
+> Bei der Interaktion mit der Datenbank entschied ich mich für die Benutzung eines [API-wrappers für die TVDB API](https://www.npmjs.com/package/node-tvdb). Bei einem API wrapper handelt es sich um eine Programmbibliothek, welche den Umgang mit der API einfacher macht.
+
+> Eine weitere Aufgabe des Servers sollte die Sendung von Push Notifications an bestimmte Geräte senden. Dies ist mithilfe des [Firebase Admin SDKs][firebase] möglich ist.
+
+> Der Server wird auf [heroku](https://heroku.com) gehostet, damit sie über das Internet erreichbar ist. Wir entschieden uns für heroku, da die Plattform einsteigerfreundlich ist und einen guten kostenlosen Plan anbietet. Die URL des Servers lautet [tvdb-rest.herokuapp.com](https://tvdb-rest.herokuapp.com/).
+
+> Parameter für GET Anfragen werden mithilfe von [Query Strings][strings] an den Server übermittelt.
 
 Beispiel:
 
-> https://tvdb-rest.herokuapp.com/getSeriesByName
+> https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=young%20sheldon
+
+> Bei POST Anfragen schicken wir ein [JSON][json] Objekt mit bestimmten Parametern. [JSON][json] (JavaScriptObjecNotation) besteht aus Attributen und Attributwerten.
+
+Ein Beispiel für JSON :
+
+```javascript
+{
+    "name": "John", 
+    "age": 30, 
+    "car": null 
+}
+
+```
+
+Der Server sendet als Ant
 
 ## Endpoints für die API
 
@@ -23,19 +45,13 @@ Beispiel:
 
 #### /getSeriesByName
 
-**POST**
+**GET**
 
-Sucht nach einer Serie mithilfe des Parameters series_name.
+Sucht nach einer Serie mithilfe des Parameters series_name. Beispiel:
 
-JSON Objekt welches mithilfe von POST geschickt wird.
+> https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=young%20sheldon
 
-```javascript
-{
-    "series_name":/*Name der Serie*/
-}
-```
-
-Response JSON bestehend aus einer Liste aus Ergebnissen.
+> Antowrt bestehend aus einem [JSON][json] Objekt, welches aus einem Array aus gefundenen Ergebnissen besteht.
 
 ```javascript
 [
@@ -47,7 +63,7 @@ Response JSON bestehend aus einer Liste aus Ergebnissen.
         "network": /*Fernsehnetzwerk der Serie*/,
         "overview": /*Überblick über den Inhalt der Serie*/,
         "seriesName": /*Name der Serie*/,
-        "status": /*Statu der Series: "fortlaufend" oder "beendet"*/
+        "status": /*Status der Series: "fortlaufend" oder "beendet"*/
     },
     //...
     //weitere Ergebnisse
@@ -56,11 +72,15 @@ Response JSON bestehend aus einer Liste aus Ergebnissen.
 
 #### /getSeriesById
 
-**POST**
+**GET**
 
 Sucht nach einer Serie mithilfe des Parameters series_id.
 
-JSON Objekt welches mithilfe von POST geschickt wird.
+Beispiel:
+
+> https://tvdb-rest.herokuapp.com/getSeriesById?series_id=328724
+
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
 ```javascript
 {
@@ -68,7 +88,7 @@ JSON Objekt welches mithilfe von POST geschickt wird.
 }
 ```
 
-Response JSON bestehend aus detaillierter Information zur Serie.
+Antowrt bestehend aus einem [JSON][json] Objekt, welches detaillierte Informationen zu der, der Serien ID entsprechenden Serie, enthält.
 
 ```javascript
 {
@@ -103,7 +123,7 @@ Response JSON bestehend aus detaillierter Information zur Serie.
 
 Sucht nach einer Serie mithilfe des Parameters series_id.
 
-JSON Objekt welches mithilfe von POST geschickt wird.
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
 ```javascript
 {
@@ -111,7 +131,7 @@ JSON Objekt welches mithilfe von POST geschickt wird.
 }
 ```
 
-Response JSON bestehend aus einem Array aus Episoden.
+Response [JSON][json] bestehend aus einem Array aus Episoden.
 
 ```javascript
 {
@@ -144,7 +164,7 @@ Response JSON bestehend aus einem Array aus Episoden.
 
 Sucht nach der Episode einer Serie, die am nächsten in der Zukunft ausgestrahlt wird.
 
-JSON Objekt welches mithilfe von POST geschickt wird.
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
 ```javascript
 {
@@ -152,7 +172,7 @@ JSON Objekt welches mithilfe von POST geschickt wird.
 }
 ```
 
-Response JSON bestehend aus einer Episode
+Response [JSON][json] bestehend aus einer Episode
 
 ```javascript
 {
@@ -182,7 +202,7 @@ Response JSON bestehend aus einer Episode
 
 Schickt eine Benachrichtigung mithilfe von [fcm](https://firebase.google.com/products/cloud-messaging/).
 
-JSON Objekt welches mithilfe von POST geschickt wird.
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
 ```javascript
 {
@@ -195,8 +215,13 @@ JSON Objekt welches mithilfe von POST geschickt wird.
 
 Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 
-```html
+```
 {
    Message sent!                 
 }
 ```
+[node]:https://nodejs.org/de/
+[Disbot]:https://github.com/ayykamp/discbot
+[frame]:https://de.wikipedia.org/wiki/Framework
+[firebase]:https://firebase.google.com/docs/admin/setup
+[json]:https://www.json.org/json-de.html
