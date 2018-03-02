@@ -19,3 +19,7 @@ Im Falle einer Anfrage eines Benutzers mit eigenem Account, wird zuerst eine Anf
 
 Dabei bietet Google die Firebase Console GUI zum Vereinfachten Testen dieses Vorganges, auch ohne eigenen Server. Diese Funktion kann auch benutzt werden, um einfach und schnell an bestimmte Nutzergruppen der App Benachrichtigungen zu versenden, z.B. nur an Nutzer in bestimmten Ländern oder Altersgruppen.
 ![](https://firebase.google.com/docs/cloud-messaging/images/messaging-overview.png)
+
+## GUI
+
+## Authentifizierung
