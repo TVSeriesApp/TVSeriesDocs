@@ -4,27 +4,31 @@
 
 ## Einführung
 
-> Um die benötigten Daten für unsere App zu bekommen benutzen wir die für die kostenlos benutzbare [tv-db API](https://api.thetvdb.com/swagger). Bei dieser handelt es sich um eine kostenlose Datenbank, welche Informationen zu vielen Serien in 32 verschiedenen Sprachen bereitstellt.
+Um die benötigten Daten für unsere App zu bekommen benutzen wir die für die kostenlos benutzbare [tv-db API](https://api.thetvdb.com/swagger). Bei dieser handelt es sich um eine kostenlose Datenbank, welche Informationen zu vielen Serien in 32 verschiedenen Sprachen bereitstellt.
 
-> Allerdings hatte ich Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) Protokolls.  Also stellte ich [eine Frage auf der Q&A Seite Stackoverflow](https://stackoverflow.com/questions/48272135/how-do-i-avoid-getting-the-http-status-code-405). DIe erhaltenen Antoworten halfen mir sehr bei der Lösung des Problems
+Allerdings hatte ich Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) Protokolls.  Also stellte ich [eine Frage auf der Q&A Seite Stackoverflow](https://stackoverflow.com/questions/48272135/how-do-i-avoid-getting-the-http-status-code-405). DIe erhaltenen Antworten halfen mir sehr bei der Lösung des Problems.
 
-> Um das Problem zu lösen entschied ich mich dazu einen eigenen Server zu erstellen, welcher die Anfragen an die TVDB Server weiterleitet. 
+Um das Problem zu lösen entschied ich mich dazu einen eigenen Server zu erstellen, welcher die Anfragen an den TVDB Server weiterleitet. 
 
-Cih entschied mich für die Plattform [node.js][node] und das [framework][frame] [express.js][http://expressjs.com/], da ich einerseits schon [ein wenig Erfahrung][Disbot] mit node.js hatte und andererseits express.js sehr einsteigerfreundlich erschien. 
+Ich entschied mich für die Plattform [node.js][node] und das [framework][frame] [express.js][http://expressjs.com/], da ich einerseits schon [ein wenig Erfahrung][Disbot] mit node.js hatte und andererseits express.js sehr einsteigerfreundlich erschien. 
 
-> Bei der Interaktion mit der Datenbank entschied ich mich für die Benutzung eines [API-wrappers für die TVDB API](https://www.npmjs.com/package/node-tvdb). Bei einem API wrapper handelt es sich um eine Programmbibliothek, welche den Umgang mit der API einfacher macht.
+Bei der Interaktion mit der Datenbank entschied ich mich für die Benutzung eines [API-wrappers für die TVDB API](https://www.npmjs.com/package/node-tvdb). Bei einem API wrapper handelt es sich um eine Programmbibliothek, welche den Umgang mit der API einfacher macht.
 
-> Eine weitere Aufgabe des Servers sollte die Sendung von Push Notifications an bestimmte Geräte senden. Dies ist mithilfe des [Firebase Admin SDKs][firebase] möglich ist.
+Eine weitere Aufgabe des Servers sollte die Sendung von Push Notifications an bestimmte Geräte senden. Dies ist mithilfe des [Firebase Admin SDKs][firebase] möglich.
 
-> Der Server wird auf [heroku](https://heroku.com) gehostet, damit sie über das Internet erreichbar ist. Wir entschieden uns für heroku, da die Plattform einsteigerfreundlich ist und einen guten kostenlosen Plan anbietet. Die URL des Servers lautet [tvdb-rest.herokuapp.com](https://tvdb-rest.herokuapp.com/).
+Der Server wird auf [heroku](https://heroku.com) gehostet, damit er über das Internet erreichbar ist. Wir entschieden uns für heroku, da die Plattform einsteigerfreundlich ist und einen guten kostenlosen Plan anbietet. 
 
-> Parameter für GET Anfragen werden mithilfe von [Query Strings][strings] an den Server übermittelt.
+Die URL des Servers lautet [tvdb-rest.herokuapp.com](https://tvdb-rest.herokuapp.com/).
+
+Um mit dem Server interagieren zu können schicken wir von der App aus über das Internet sogenannte [http-requests (HTTP Anfragen)][http]. Wenn es nur darum geht Daten vom Server zu empfangen benutzen wir GET Anfragen. Wenn wir auch Daten von der App an den Server übermitteln müssen benutzen wir POST Anfragen
+
+Parameter für GET Anfragen werden mithilfe von [Query Strings][strings] an den Server übermittelt.
 
 Beispiel:
 
 > https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=young%20sheldon
 
-> Bei POST Anfragen schicken wir ein [JSON][json] Objekt mit bestimmten Parametern. [JSON][json] (JavaScriptObjecNotation) besteht aus Attributen und Attributwerten.
+Bei POST Anfragen schicken wir ein [JSON][json] Objekt mit bestimmten Parametern an den Server unter einer bestimmten URL. [JSON][json] (JavaScriptObjecNotation) besteht aus Paaren von Attributen und Attributwerten.
 
 Ein Beispiel für JSON :
 
@@ -37,7 +41,9 @@ Ein Beispiel für JSON :
 
 ```
 
-Der Server sendet als Ant
+Über das HTTP (HyperTextTransferProtocoll) werden Daten in FOrm eines einzigen Srings an den Server übertragen.
+
+Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eines einzigen Strings gesendet werden. Um diese Objekte programmatisch weiterzuverwenden müssen sie zuerst [geparst](https://de.wikipedia.org/wiki/Parser) werden.
 
 ## Endpoints für die API
 
@@ -51,7 +57,7 @@ Sucht nach einer Serie mithilfe des Parameters series_name. Beispiel:
 
 > https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=young%20sheldon
 
-> Antowrt bestehend aus einem [JSON][json] Objekt, welches aus einem Array aus gefundenen Ergebnissen besteht.
+> Antwort bestehend aus einem [JSON][json] Objekt, welches aus einem Array aus gefundenen Ergebnissen besteht.
 
 ```javascript
 [
@@ -80,15 +86,7 @@ Beispiel:
 
 > https://tvdb-rest.herokuapp.com/getSeriesById?series_id=328724
 
-[JSON][json] Objekt welches mithilfe von POST geschickt wird.
-
-```javascript
-{
-    "series_id":/*ID der Serie*/
-}
-```
-
-Antowrt bestehend aus einem [JSON][json] Objekt, welches detaillierte Informationen zu der, der Serien ID entsprechenden Serie, enthält.
+Antwort bestehend aus einem [JSON][json] Objekt, welches detaillierte Informationen zu der, der Serien ID entsprechenden Serie, enthält.
 
 ```javascript
 {
@@ -121,7 +119,7 @@ Antowrt bestehend aus einem [JSON][json] Objekt, welches detaillierte Informatio
 
 **POST**
 
-Sucht nach einer Serie mithilfe des Parameters series_id.
+Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_id.
 
 [JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
@@ -162,15 +160,11 @@ Response [JSON][json] bestehend aus einem Array aus Episoden.
 
 **POST**
 
-Sucht nach der Episode einer Serie, die am nächsten in der Zukunft ausgestrahlt wird.
+Sucht nach der Episode einer Serie, die am nächsten in der Zukunft ausgestrahlt wird. Verwendet wird hierfür der Parameter series_id
 
-[JSON][json] Objekt welches mithilfe von POST geschickt wird.
+Beispiel:
 
-```javascript
-{
-    "series_id":/*ID der Serie*/
-}
-```
+> https://tvdb-rest.herokuapp.com/getLatestEpisodeById?series_id=328724
 
 Response [JSON][json] bestehend aus einer Episode
 
@@ -225,3 +219,4 @@ Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 [frame]:https://de.wikipedia.org/wiki/Framework
 [firebase]:https://firebase.google.com/docs/admin/setup
 [json]:https://www.json.org/json-de.html
+[http]:https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP-Anfragemethoden
