@@ -1,5 +1,5 @@
 <!-- ![](yes.png) -->
-![logo](abstract-colorful-floral-shape-with-logo_1035-8982.jpg)
+![logo](8982.svg)
 
 # The TV Series App <small>0.12</small>
 
