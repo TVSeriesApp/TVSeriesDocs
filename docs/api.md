@@ -41,13 +41,38 @@ Ein Beispiel für JSON :
 
 ```
 
-Der Server empfängt JSON Objekte, welche allerdings in Form eines einzigen Strings gesendet werden. Um diese Objekte programmatisch weiterzuverwenden müssen sie zuerst [geparst](https://de.wikipedia.org/wiki/Parser) werden. 
+Der Server empfängt JSON Objekte, welche allerdings in Form eines einzigen Strings gesendet werden. Um diese Objekte programmatisch weiterzuverwenden müssen sie zuerst [geparst](https://de.wikipedia.org/wiki/Parser) werden.
 
 Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eines einzigen Strings gesendet werden. Um diese Objekte programmatisch weiterzuverwenden müssen sie zuerst [geparst](https://de.wikipedia.org/wiki/Parser) werden.
 
-## Endpoints für die API
+----
 
-Die einzelnen URLs, über welche der Server erreichbar ist, nennt man Endpoints.
+#### Anmerkung: 
+
+Standardmäßig sind alle Ergebnisse von GET Endpunkten in englischer Sprache. Um Ergebnisse in anderen Sprachen  zu erhalten, muss ein weiterer Query String an die URL angehängt werden. Der Paramter lautet "lang" und muss einem der im Folgenden gelisteten Sprachkürzel entsprechen.
+
+Beispiel:
+
+> https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=de
+
+Zurzeit werden drei Sprachen unterstützt:
+
+| Sprache   | Sprachkürzel| Beispiel                                                                     |
+| --------- |:-----:| -----------------------------------------------------------------------------------|
+| Deustch   | de    |https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=de |
+| Englisch  | en    |https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=en |
+| Spanisch  | es    |https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=es |
+
+Anmerkung: Beim dritten Beispiel wird kein Ergebnis gefunden, da die Serie im Spanischen anders heißt. Siehe hierfür: 
+
+> https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=El%20joven%20Sheldon&lang=es 
+
+
+----
+
+## Endpunkte für den Server
+
+Die einzelnen URLs, über welche der Server erreichbar ist, nennt man Endpunkte.
 
 Beispiel: 
 
@@ -63,7 +88,7 @@ Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_name. B
 
 > https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=young%20sheldon
 
-> Antwort bestehend aus einem [JSON][json] Objekt, welches aus einem Array aus gefundenen Ergebnissen besteht.
+Antwort bestehend aus einem [JSON][json] Objekt, welches aus einem Array aus gefundenen Ergebnissen besteht.
 
 ```javascript
 [
@@ -75,7 +100,7 @@ Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_name. B
         "network": /*Fernsehnetzwerk der Serie*/,
         "overview": /*Überblick über den Inhalt der Serie*/,
         "seriesName": /*Name der Serie*/,
-        "status": /*Status der Series: "fortlaufend" oder "beendet"*/
+        "status": /*Status der Series: "continuing" oder "ended" (zu dt. :"fortlaufend" oder "beendet")*/
     },
     //...
     //weitere Ergebnisse
@@ -86,7 +111,7 @@ Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_name. B
 
 **GET**
 
-Sucht nach einer Serie mithilfe des Parameters series_id.
+Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_id.
 
 Beispiel:
 
@@ -125,42 +150,38 @@ Antwort bestehend aus einem [JSON][json] Objekt, welches detaillierte Informatio
 
 **POST**
 
-Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_id.
+Durchsucht die Datenbank nach den Episoden einer Serie mithilfe des Parameters series_id.
 
-[JSON][json] Objekt welches mithilfe von POST geschickt wird.
+Beispiel:
 
-```javascript
-{
-    "series_id":/*ID der Serie*/
-}
-```
+> https://tvdb-rest.herokuapp.com/getEpisodesBySeriesId?series_id=328724
 
 Response [JSON][json] bestehend aus einem Array aus Episoden.
 
 ```javascript
-{
-    [
-        {
-            "absoluteNumber": /*Episodennummer*/,
-            "airedEpisodeNumber": /*Nummer der Episode, die als letztes erschienen ist*/,
-            "airedSeason": /*Die Staffel, in der die Episode erschienen ist*/,
-            "airedSeasonID": /*ID der Staffel*/,
-            "dvdEpisodeNumber": /*DVD Episodennummer*/,
-            "dvdSeason": /*DVD Staffel*/,
-            "episodeName": /*Name der Episode*/,
-            "firstAired": /*Datum der Erstausstrahlung dieser Episode*/,
-            "id": /*ID der Episode*/,
-            "language": {
-                "episodeName": /*Sprache des Episodennamens*/,
-                "overview": /*Sprache des Überblicks über den Inhalt*/
-            },
-            "lastUpdated": /*Zeitpunkt des letzten Updates*/,
-            "overview": /*Überblick über die Handlung*/        
+
+[
+    {
+        "absoluteNumber": /*Episodennummer*/,
+        "airedEpisodeNumber": /*Nummer der Episode, die als letztes erschienen ist*/,
+        "airedSeason": /*Die Staffel, in der die Episode erschienen ist*/,
+        "airedSeasonID": /*ID der Staffel*/,
+        "dvdEpisodeNumber": /*DVD Episodennummer*/,
+        "dvdSeason": /*DVD Staffel*/,
+        "episodeName": /*Name der Episode*/,
+        "firstAired": /*Datum der Erstausstrahlung dieser Episode*/,
+        "id": /*ID der Episode*/,
+        "language": {
+            "episodeName": /*Sprache des Episodennamens*/,
+            "overview": /*Sprache des Überblicks über den Inhalt*/
         },
-        //...
-        //weitere Episoden
-    ]
-}
+        "lastUpdated": /*Zeitpunkt des letzten Updates*/,
+        "overview": /*Überblick über die Handlung*/        
+    },
+    //...
+    //weitere Episoden
+]
+
 ```
 #### /getLatestEpisodeById
 
