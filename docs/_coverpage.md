@@ -1,5 +1,4 @@
 <!-- ![](yes.png) -->
-![logo](8982.svg)
 
 # The TV Series App <small>0.12</small>
 
