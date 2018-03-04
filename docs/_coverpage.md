@@ -1,6 +1,6 @@
 <!-- ![](yes.png) -->
 
-# The TV Series App <small>0.12</small>
+# The TV Series App <small>0.18</small>
 
 > The ~~102412th~~ **only** App to get notifications about your favorite ~~animus~~ TV shows!
 
