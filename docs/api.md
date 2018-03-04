@@ -4,19 +4,19 @@
 
 ## Einführung
 
-Um die benötigten Daten für unsere App zu bekommen benutzen wir die für die kostenlos benutzbare [tv-db API](https://api.thetvdb.com/swagger). Bei dieser handelt es sich um eine kostenlose Datenbank, welche Informationen zu vielen Serien in 32 verschiedenen Sprachen bereitstellt.
+> Um die benötigten Informationen über die Serien unsere App zu bekommen, benutzen wir die für uns kostenlose [tv-db API](https://api.thetvdb.com/swagger). Hinter dieser API (Appilcation Programming Interface, dt. Schnittstelle zur Anwenderprogrammierung) steht die Datenbank von [www.thetvdb.com](https://www.thetvdb.com), welche eine große Anzahl an Datensätze über viele verschiedene Serien enthält.
 
-Allerdings hatte ich Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) Protokolls.  Also stellte ich [eine Frage auf der Q&A Seite Stackoverflow](https://stackoverflow.com/questions/48272135/how-do-i-avoid-getting-the-http-status-code-405). DIe erhaltenen Antworten halfen mir sehr bei der Lösung des Problems.
+> Allerdings hatte wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) Protokolls.  Also stellten wir [eine Frage auf der Q&A Seite Stackoverflow](https://stackoverflow.com/questions/48272135/how-do-i-avoid-getting-the-http-status-code-405). Die erhaltenen Antoworten halfen uns sehr bei der Lösung des Problems
 
 Um das Problem zu lösen entschied ich mich dazu einen eigenen Server zu erstellen, welcher die Anfragen an den TVDB Server weiterleitet. 
 
-Ich entschied mich für die Plattform [node.js][node] und das [framework][frame] [express.js][http://expressjs.com/], da ich einerseits schon [ein wenig Erfahrung][Disbot] mit node.js hatte und andererseits express.js sehr einsteigerfreundlich erschien. 
+Wir entschieden uns für die Plattform [node.js][node] und das [framework][frame] [express.js][http://expressjs.com/], da Arda einerseits schon [ein wenig Erfahrung][Disbot] mit node.js hatte und andererseits express.js sehr einsteigerfreundlich erschien. 
 
-Bei der Interaktion mit der Datenbank entschied ich mich für die Benutzung eines [API-wrappers für die TVDB API](https://www.npmjs.com/package/node-tvdb). Bei einem API wrapper handelt es sich um eine Programmbibliothek, welche den Umgang mit der API einfacher macht.
+> Bei der Interaktion mit der Datenbank entschieden wir uns für die Benutzung eines [API-wrappers für die TVDB API](https://www.npmjs.com/package/node-tvdb). Bei einem API wrapper handelt es sich um eine Programmbibliothek, welche den Umgang mit der API vereinfacht.
 
 Eine weitere Aufgabe des Servers sollte die Sendung von Push Notifications an bestimmte Geräte senden. Dies ist mithilfe des [Firebase Admin SDKs][firebase] möglich.
 
-Der Server wird auf [heroku](https://heroku.com) gehostet, damit er über das Internet erreichbar ist. Wir entschieden uns für heroku, da die Plattform einsteigerfreundlich ist und einen guten kostenlosen Plan anbietet. 
+> Der Server wird auf [heroku](https://heroku.com) gehostet, damit er über das Internet erreichbar ist. Wir entschieden uns für heroku, da die Plattform einsteigerfreundlich ist und einen guten kostenlosen Plan anbietet. Die URL des Servers lautet [tvdb-rest.herokuapp.com](https://tvdb-rest.herokuapp.com/).
 
 Die URL des Servers lautet [tvdb-rest.herokuapp.com](https://tvdb-rest.herokuapp.com/).
 
@@ -41,11 +41,17 @@ Ein Beispiel für JSON :
 
 ```
 
-Über das HTTP (HyperTextTransferProtocoll) werden Daten in FOrm eines einzigen Srings an den Server übertragen.
+Der Server empfängt JSON Objekte, welche allerdings in Form eines einzigen Strings gesendet werden. Um diese Objekte programmatisch weiterzuverwenden müssen sie zuerst [geparst](https://de.wikipedia.org/wiki/Parser) werden. 
 
 Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eines einzigen Strings gesendet werden. Um diese Objekte programmatisch weiterzuverwenden müssen sie zuerst [geparst](https://de.wikipedia.org/wiki/Parser) werden.
 
 ## Endpoints für die API
+
+Die einzelnen URLs, über welche der Server erreichbar ist, nennt man Endpoints.
+
+Beispiel: 
+
+> https://tvdb-rest.herokuapp.com/getSeriesByName
 
 ### Interaktion mit thetvdb.com
 
@@ -53,7 +59,7 @@ Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eine
 
 **GET**
 
-Sucht nach einer Serie mithilfe des Parameters series_name. Beispiel:
+Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_name. Beispiel:
 
 > https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=young%20sheldon
 
@@ -220,3 +226,4 @@ Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 [firebase]:https://firebase.google.com/docs/admin/setup
 [json]:https://www.json.org/json-de.html
 [http]:https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP-Anfragemethoden
+[http-all]:https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol
