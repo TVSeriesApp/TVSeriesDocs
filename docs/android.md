@@ -1,9 +1,11 @@
 
-# Notifications
+# Benachrichtigungen
 
 ---
 
 ## Einführung
+
+>Push-Benachrichtigungen sind Meldungen, die ohne das Öffnen der jeweiligen App auf dem Smartphone angezeigt werden.
 
 >Notifications, d.h. Benachrichtigungen über den Zeitpunkt des Erscheinens der neuesten Folge einer ausgewählten Serie, werden über [FCM](#FCM NOtifications) (Firebase Cloud Messaging) realisiert.
 
