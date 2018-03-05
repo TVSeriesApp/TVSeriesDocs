@@ -3,19 +3,17 @@
 ## Beschreibung
 
 Entwicklungsziel ist eine Android-App, die es ermöglicht nach Serien zu suchen, Ergebnisse 
-anzuzeigen und in einer Detailansicht weitere Informationen darzustellen. Gefundene Serien können 
-nun der Organisation halber auf eine eigene „Watching-Liste“ hinzugefügt werden, und sobald eine 
-neue Folge einer Serie auf der eigenen Liste erscheint, wird der Nutzer durch eine [Push-Notification](android.md#Notifications) 
-darüber benachrichtigt.
+anzuzeigen und in einer Detailansicht weitere Informationen darzustellen. Desweiteren sollen Serien einer Watchlist hinzugefügt werden, damit diese später einfach wiedergefunden werden können. Sobald nun eine 
+neue Folge einer Serie erscheint, die auf der eigenen Watchlist steht werden die Nutzenden durch eine [Push-Benachrichtigung](android.md#Notifications) benachrichtigt.
 
 Dies wird ermöglicht durch den [API](api.md#API)-Zugriff auf die Datenbank von thetvdb.com und die Cloud-
-Messaging Funktion des Google-Dienstes Firebase, sowie die App-Entwicklungsumgebung Android 
+Messaging Funktion des Google-Dienstes Firebase sowie die App-Entwicklungsumgebung Android 
 Studio und den extern bei Heroku gehosteten Node.js-Server.
 Das Kostenziel beträgt 0€ (bei Nicht-Publizierung der App im PlayStore).
 
 >Anwendungsbeispiel
 
->Konrad guckt die Serie Frauentausch und möchte über neue Veröffentlichungen auf dem Laufenden gehalten werden. Er benutzt die App, um sich Benachrichtigungen schickeb zu lassen, sobald eine neue Folge publiziert wird. Dies tut er indem er in der Suchansicht die Detailseite der Serie aufruft, und sie zu seiner persönlichen "Watchlist" hinzufügt.
+>Die Nutzenden gucken die Serie Game of Thrones und möchte über neue Veröffentlichungen auf dem Laufenden gehalten werden. Sie benutzen die App, um sich Benachrichtigungen schicken zu lassen, sobald eine neue Folge publiziert wird. Dies tun sie, indem sie in der Suchansicht die Detailseite der Serie aufrufen und sie zu ihrer persönlichen "Watchlist" hinzufügen.
 
 
 ## Anforderungen
@@ -25,13 +23,13 @@ Das Kostenziel beträgt 0€ (bei Nicht-Publizierung der App im PlayStore).
 * Anzeige eines Suchfelds für Serien
 * Ergebnisanzeige für Suchanfragen mit Ergebnissen aus der „thetvdb.com“-Datenbank
 * Gestaltung der App nach Grundlagen des Material Design
-* Empfangen von Push-Notifications (und Anzeigen derselben über den Push-Service)
+* Empfangen von Push-Benachrichtigungen (und Anzeigen derselben über den Push-Service)
 
 ### Soll:
-* Mögliches Hinzufügen von Serien auf eine persönliche „Watching-Liste“
-* Automatisiertes Empfangen von Push-Notifications je nach individueller Serienliste und Air Time neuer Folgen von auf dieser Liste enthaltenen Serien
+* Mögliches Hinzufügen von Serien auf eine persönliche „Watchlist“
+* Automatisiertes Empfangen von Push-Benachrichigungen, je nach individueller Watchlist und Sendezeit neuer Folgen von auf dieser Liste enthaltenen Serien
 * Teilen der eigenen Serienliste über verschiedene Medien mithilfe eines „Share-Buttons“
-* Konrad sollte auch mal was machen
+
 
 ### Kann:
 * Veröffentlichung der App im Google PlayStore
