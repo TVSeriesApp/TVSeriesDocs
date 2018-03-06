@@ -1,4 +1,4 @@
 * [Einführung](README.md)
-* [API](api.md)
+* [Server](server.md)
 * [App](app.md)
 * [Reflexionen](Reflexionen.md)

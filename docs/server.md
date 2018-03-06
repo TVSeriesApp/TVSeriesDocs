@@ -4,7 +4,7 @@
 
 ## Einführung
 
-Um die benötigten Informationen über die Serien unsere App zu bekommen, benutzen wir die für uns kostenlose [tv-db API][api]. Hinter dieser API (Appilcation Programming Interface, dt. Schnittstelle zur Anwenderprogrammierung) steht die Datenbank von [www.thetvdb.com][tvdb], welche eine große Anzahl an Datensätze über viele verschiedene Serien enthält.
+Um die benötigten Informationen über die Serien unsere App zu bekommen, benutzen wir die für uns kostenlose [tv-db API][api]. Hinter dieser API (Appilcation Programming Interface, dt. Schnittstelle zur Anwenderprogrammierung) steht die Datenbank von [www.thetvdb.com][tvdb], welche eine große Anzahl an Datensätzen über viele verschiedene Serien enthält.
 Allerdings hatte wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS][cors] Protokolls.  Also stellten wir [eine Frage auf der Q&A Seite Stackoverflow][stack]. Die erhaltenen Antoworten halfen uns sehr bei der Lösung des Problems
 
 Um das Problem zu lösen entschied ich mich dazu einen eigenen Server zu erstellen, welcher die Anfragen an den TVDB Server weiterleitet.
@@ -59,6 +59,8 @@ Dies ist die Datei, die bei Start des Serves ausgeführt wird. Es wird eine HTTP
 <p style="color:#F7DF1E; font-family:Roboto Mono,Monaco,courier,monospace">app.js:</p>
 
 Diese Datei ist für die Zuweisung der Endpunkte verantwortlich. Mithilfe der require() Methode werden alle Module aus den verschiedenen Ordnern importiert. Danach werden sie bestimmten Endpunkten unter Verwendung von app.use("/endpunkt", modul) zugewiesen. Zuletzt wird das Objekt app als Modul exportiert.
+
+
 
 ![Dateistruktur](./images/1.png)
 
@@ -282,11 +284,7 @@ Schickt eine Benachrichtigung mithilfe von [fcm](https://firebase.google.com/pro
 
 Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 
-```javascript
-{
-   Message sent!
-}
-```
+`Message sent!`
 
 [node]:https://nodejs.org/de/
 [Disbot]:https://github.com/ayykamp/discbot
