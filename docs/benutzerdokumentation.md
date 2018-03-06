@@ -34,7 +34,7 @@ Die Suche nach "It's always sunny" ergab folgende Ergebnisse:
 
 ![](https://media.discordapp.net/attachments/402801501866688512/420679131374551041/Screenshot_20180306-173349.jpg?width=380&height=676)
 
-In der Detailansicht für "It's always sunny in Moscow" kann die Serie zur Watchlist hinzugefügt werden. Zusätzlich gibt es über eine Einblendung eine Rückmeldung, dass die Serie wirklich zur Watchlist hinzugefügt wurde:
+In der Detailansicht für "It's Always Sunny in Moscow" kann die Serie zur Watchlist hinzugefügt werden. Zusätzlich gibt es über eine Einblendung eine Rückmeldung, dass die Serie wirklich zur Watchlist hinzugefügt wurde:
 
 ![](https://media.discordapp.net/attachments/402801501866688512/420679145828253696/Screenshot_20180306-211659.jpg?width=380&height=676)
 
