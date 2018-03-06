@@ -129,7 +129,7 @@ public boolean onQueryTextSubmit(String s) {
 ```
 
 ### Methode onNavigationItemSelected(MenuItem item)
-In dieser Methode wird das Auswählen von Menüpunkten in der linken Navigationsleiste verarbeitet. Dabei wird die ID, welche von der Navigationsleiste übergeben wird mit der ID des Menüpunktes verglichen und bei Überstimmung eine Abfolge an Methodenaufrufen ausgeführt, die das neue Layout (bzw. die neue Ansicht) laden und sichtbar machen. Die Funktion gibt true zurück, wenn ein Menüpunkt in der Seitenleiste angetippt wurde.
+In dieser Methode wird das Auswählen von Menüpunkten in der linken Navigationsleiste verarbeitet. Dabei wird die ID, welche von der Navigationsleiste übergeben wird mit der ID des Menüpunktes verglichen und bei Überstimmung eine Abfolge an Methodenaufrufen ausgeführt, die das neue Layout (bzw. die neue Ansicht) laden und sichtbar machen. Die Funktion gibt, nachdem das Seitenmenü geschlossen wird, true zurück, wenn ein Menüpunkt in der Seitenleiste angetippt wurde.
 
 ```java
 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -148,5 +148,32 @@ public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     return true;
 }
 ```
+
+### Methode onOptionsItemSelected(MenuItem item)
+Diese Methode ist zuständig für das Ändern der Sprache der Ansteuerung der API (und damit auch der Suche). Diese wird zwischen Deutsch Englisch und Spanisch durchgewechselt, wenn der_die Nutzer_in auf den Menüeintrag "Change Language" im oberen Menü tippt. Dabei wird zur Rückmeldung eine Toast-Nachricht mit der aktuellen Sprache gezeigt.
+
+```java
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case R.id.action_settings:
+            if (lang.equals("en")) {
+                lang = "de";
+                Toast.makeText(getApplicationContext(), "Sprache wurde auf Deutsch geändert", Toast.LENGTH_LONG).show();
+            }
+            else if (lang.equals("de")) {
+                lang = "es";
+                Toast.makeText(getApplicationContext(), "Changed Language to English", Toast.LENGTH_LONG).show();
+            }
+            else if (lang.equals("es")) {
+                lang = "en";
+                Toast.makeText(getApplicationContext(), "Cambió el idioma al español.", Toast.LENGTH_LONG).show();
+            }
+             return true;
+        default:
+            return super.onOptionsItemSelected(item);
+    }
+}
+```
+
 ## Authentifizierung
 TODO!
