@@ -131,7 +131,9 @@ Beispiel:
 
 **GET**
 
-Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_name. Beispiel:
+Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_name 
+
+Beispiel:
 
 > https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=young%20sheldon
 
@@ -158,7 +160,7 @@ Antwort bestehend aus einem [JSON][json] Objekt, welches aus einem Array aus gef
 
 **GET**
 
-Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_id.
+Durchsucht die Datenbank nach einer Serie mithilfe des Parameters series_id und gibt detaillierte Informationen zu dieser zurück.
 
 Beispiel:
 
@@ -197,7 +199,7 @@ Antwort bestehend aus einem [JSON][json] Objekt, welches detaillierte Informatio
 
 **POST**
 
-Durchsucht die Datenbank nach den Episoden einer Serie mithilfe des Parameters series_id.
+Durchsucht die Datenbank nach den Episoden einer Serie mithilfe des Parameters series_id und gibt diese zurück.
 
 Beispiel:
 
@@ -235,7 +237,7 @@ Response [JSON][json] bestehend aus einem Array aus Episoden.
 
 **POST**
 
-Sucht nach der Episode einer Serie, die am nächsten in der Zukunft ausgestrahlt wird. Verwendet wird hierfür der Parameter series_id
+Sucht nach der Episode einer Serie, die am nächsten in der Zukunft ausgestrahlt wird und gibt diese zurück. Verwendet wird hierfür der Parameter series_id
 
 Beispiel:
 
@@ -265,6 +267,8 @@ Response [JSON][json] bestehend aus einer Episode
 
 ### Interaktion mit Firebase
 
+### Interaktion mit FCM
+
 #### /fcm
 
 **POST**
@@ -275,7 +279,7 @@ Schickt eine Benachrichtigung mithilfe von [fcm](https://firebase.google.com/pro
 
 ```javascript
 {
-    "token":/*ID der Serie*/,
+    "token":/*device token des Nutzers*/,
     "title":/*Titel der Benachrichtigung*/,
     "body":/*Inhalt der Benachrichtigung*/,
     "priority":/*Priorität ("high" oder "low")*/
@@ -285,6 +289,123 @@ Schickt eine Benachrichtigung mithilfe von [fcm](https://firebase.google.com/pro
 Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 
 `Message sent!`
+
+#### /postToken
+
+**POST**
+
+Speichert den device token eines Nutzers in dem, der uid entsprechenden Eintrag in Firestore.
+
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
+
+```javascript
+{
+    "uid":/*uid des Nutzers dessen token hinzugefügt werden soll*/
+    "token":/*device token des Nutzers*/
+}
+```
+
+Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
+
+`Token updated!`
+
+Rückmeldung wenn der Token bereits in dieser Form bei Firestore vorliegt.
+
+`Token not updated as there are no changes!`
+
+#### /getWatchlist
+
+**POST**
+
+Gibt die watchlist eines Nutzers zurück.
+
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
+
+```javascript
+{
+    "uid":/*uid des Nutzers dessen watchlist zurückgegeben werden soll*/
+}
+```
+
+Response [JSON][json] bestehend aus der watchlist des Nutzers
+
+```javascript
+[
+    /*Eintrag 1*/,
+    /*Eintrag 2*/,
+    /*Eintrag 3*/
+]
+```
+
+#### /addWatchlistItem
+
+**POST**
+
+Fügt dem watchlist Array des Firestore Eintrags des entsprechenden Nutzers einen neuen Eintrag hinzu.
+
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
+
+```javascript
+{
+    "uid":/*uid des Nutzers dessen watchlist aktualisiert werden soll*/,
+    "wl_item":/*Id der Serie welche hinzugefügt werden soll*/,
+    "lang":/*Sprache in der die Serie hinzugefügt werden soll*/
+}
+```
+
+Rückmeldung wenn der Eintrag erfolgreich hinzugefügt wurde.
+
+`Item added!`
+
+Rückmeldung wenn der Eintrag bereits in dieser Form bei Firestore vorliegt.
+
+`Item not added (duplicate)!`
+
+#### /removeWatchlistItem
+
+**DELETE**
+
+Entfernt einen Eintrag aus dem watchlist Array des Firestore Eintrags des entsprechenden Nutzers.
+
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
+
+```javascript
+{
+    "uid":/*uid des Nutzers dessen watchlist aktualisiert werden soll*/,
+    "wl_item":/*Id der Serie welche entfernt werden soll*/,
+}
+```
+
+Rückmeldung wenn der Eintrag erfolgreich entfernt wurde.
+
+`Item removed!`
+
+Rückmeldung wenn der Eintrag nicht bei Firestore vorliegt.
+
+`Item not in the Watchlist!`
+
+#### /watchListNotif
+
+**POST**
+
+Sendet eine Benachrichtigung sobald eine neue Folge einer Serie ausgestrahlt wird.
+
+[JSON][json] Objekt welches mithilfe von POST geschickt wird.
+
+```javascript
+{
+    "uid":/*uid des Nutzers dessen watchlist aktualisiert werden soll*/,
+    "wl_item":/*Id der Serie welche entfernt werden soll*/,
+}
+```
+
+Rückmeldung wenn der Eintrag erfolgreich entfernt wurde.
+
+`Item removed!`
+
+Rückmeldung wenn der Eintrag nicht bei Firestore vorliegt.
+
+`Item not in the Watchlist!`
 
 [node]:https://nodejs.org/de/
 [Disbot]:https://github.com/ayykamp/discbot
