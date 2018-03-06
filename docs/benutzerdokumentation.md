@@ -14,7 +14,7 @@ Nutzende, die sich noch nicht registriert oder noch nicht eingeloogt sind, bekom
 ![](https://media.discordapp.net/attachments/402801501866688512/420679136449658881/Screenshot_20180306-211546.jpg?width=380&height=676)
 
 Hier haben Nutzende die Wahl zwischen verschiedenen Möglichkeiten der Registrierung/Einloggens:
-![verschiedene Möglichkeiten zur Registrierung](./images/Screenshot_20180306-211730.jpg)
+![verschiedene Möglichkeiten zur Registrierung](https://media.discordapp.net/attachments/402801501866688512/420679146386227220/Screenshot_20180306-211730.jpg?width=380&height=676)
 
 Beispiel für eine Registrierung per E-mail:
 ![](https://cdn.discordapp.com/attachments/402801501866688512/420679148567003136/Screenshot_20180306-211814.jpg)
