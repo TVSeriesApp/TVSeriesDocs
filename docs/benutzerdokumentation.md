@@ -17,7 +17,7 @@ Hier haben Nutzende die Wahl zwischen verschiedenen Möglichkeiten der Registrie
 ![verschiedene Möglichkeiten zur Registrierung](https://media.discordapp.net/attachments/402801501866688512/420679146386227220/Screenshot_20180306-211730.jpg?width=380&height=676)
 
 Beispiel für eine Registrierung per E-mail:
-![](https://cdn.discordapp.com/attachments/402801501866688512/420679148567003136/Screenshot_20180306-211814.jpg)
+![](https://media.discordapp.net/attachments/402801501866688512/420679148567003136/Screenshot_20180306-211814.jpg?width=380&height=676)
 
 Beispiel für das Einloggen per E-mail:
 ![](https://cdn.discordapp.com/attachments/402801501866688512/420679147430346763/Screenshot_20180306-211759.jpg)
