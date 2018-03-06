@@ -5,7 +5,7 @@
 
 ## Anwendung der "The TV Series App"
 
-1. Nachdem die Nutzenden die App gestartet haben wird ihnen Ihre Watchlist angezeigt. Sind die Nutzenden nicht eingeloogt bzw. haben sich noch nicht registriert ist diese Seite leer. Wenn die Nutzenden sich nun registrieren oder einloggen, wird ihnen nun ihre neue persönliche, aber noch leere Watchlist, bzw. ihre aktuelle Watchlist, angezeigt.
+1. Nachdem die Nutzenden die App gestartet haben wird ihnen Ihre Watchlist angezeigt. Sind die Nutzenden nicht eingeloggt bzw. haben sich noch nicht registriert ist diese Seite leer. Wenn die Nutzenden sich nun registrieren oder einloggen, wird ihnen nun ihre neue persönliche, aber noch leere Watchlist, bzw. ihre aktuelle Watchlist, angezeigt.
 
 Nutzende, die sich noch nicht registriert oder noch nicht eingeloogt sind, bekommen folgende Seite zu sehen:
 ![](https://media.discordapp.net/attachments/402801501866688512/420679133346005003/Screenshot_20180306-211542.jpg?width=380&height=676)
@@ -13,7 +13,7 @@ Nutzende, die sich noch nicht registriert oder noch nicht eingeloogt sind, bekom
 Über die Loginfunktion in der Navigationsleiste können sich Nutzende einloggen:
 ![](https://media.discordapp.net/attachments/402801501866688512/420679136449658881/Screenshot_20180306-211546.jpg?width=380&height=676)
 
-Hier haben Nutzende die Wahl zwischen verschiedenen Möglichkeiten der Registrierung/Einloggens:
+Hier haben Nutzende die Wahl zwischen verschiedenen Möglichkeiten zur Registrierung bzw. zum Einloggen:
 ![verschiedene Möglichkeiten zur Registrierung](https://media.discordapp.net/attachments/402801501866688512/420679146386227220/Screenshot_20180306-211730.jpg?width=380&height=676)
 
 
@@ -38,7 +38,7 @@ In der Detailansicht für "It's always sunny in Moscow" kann die Serie zur Watch
 
 ![](https://media.discordapp.net/attachments/402801501866688512/420679145828253696/Screenshot_20180306-211659.jpg?width=380&height=676)
 
-Wechseln die Nutzenden nun zur Watchlist, sehen sie, dass die Serie hinzugefügt wurde:
+Zum Anderen können Nutzende zur Watchlist-Ansicht wechseln und sehen nun, dass ihre Serie hinzugefügt wurde:
 
 ![](https://media.discordapp.net/attachments/402801501866688512/420679285519417345/Screenshot_20180306-211901.jpg?width=380&height=676)
 
