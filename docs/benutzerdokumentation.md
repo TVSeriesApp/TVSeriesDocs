@@ -26,4 +26,4 @@ Beispiel für das Einloggen per E-mail:
 Nun haben Nutzende verschiedene Aktionen, die sie ausführen können. Zum einen können sie in der Indexleiste zu "Search" navigieren, um dort nach Serien zu suchen. Dabei können sie zu Ergebnissen aus der Ergebnisliste detailliertere Inforamtionen erhalten, wenn sie diese antippen. In dieser Detailansicht ist es den Nutzenden auch möglich Serien zur Watchlist hinzuzufügen.
 
 Die Suche nach "It's always sunny" ergab folgende Ergebnisse:
-![](https://cdn.discordapp.com/attachments/402801501866688512/420679131374551041/Screenshot_20180306-173349.jpg)
+![](https://media.discordapp.net/attachments/402801501866688512/420679131374551041/Screenshot_20180306-173349.jpg?width=380&height=676)
