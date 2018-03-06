@@ -46,7 +46,7 @@ Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eine
 
 ## Dateistruktur
 
-### Über Module in nod.js
+### Über Module in node.js
 
 In node.js kann mithilfe des module.exports Attributs eine variable (egal ob Methode, Objekt oder anders) als Modul angeboten werden. Mithilfe der require('./PFAD/ZU/DATEI') Methode kann ein Modul importiert werden. Es können auch Moudle aus dem Internet mithilfe von [npm][npm] heruntergeldaen werden. Diese haben können eine große Anzahl an verschieden Funktionen haben. So ist etwas auch das von mir beutzte [Framework][frame] express.js ein node.js Modul. In anderen Programmiersprachen würde man diese als Programmbibliothek bezeichnen. Alle Module werden im Ordner node_modules gespeichert. Allerdings werden die Namen und Versionen der Module auch in einer Datei namens package.json unter dem Attribut dependencies gespeichert. Dies erlaubt die Benutzung der "npm i" Anweisung in der Konsole (z.B. cmd), welche alle in package.json gelisteten dependencies (zu dt. Abhängigkeiten, also Module ohne welche das Prgramm nicht funktioniert) herunterlädt. Dies hat die Konsequenz das der node_modules Ordner, welcher schon einmal mehrere Hundert Megabyte groß sein kann, nicht auf remote repositorys (zu dt. externe [repositorys][repo]) wie GitHub hochgeladen werden muss. Wenn man das Projekt lokal zum Laufen bringen will, muss man einfach die "npm i" Anweisung ausführen.
 
@@ -58,7 +58,7 @@ Dies ist die Datei, die bei Start des Serves ausgeführt wird. Es wird eine HTTP
 
 <p style="color:#F7DF1E; font-family:Roboto Mono,Monaco,courier,monospace">app.js:</p>
 
-Diese Datei ist für die Zuweisung der Endpunkte verantwortlich. Mithilfe der 
+Diese Datei ist für die Zuweisung der Endpunkte verantwortlich. Mithilfe der require() Methode werden alle Module aus den verschiedenen Ordnern importiert. Danach werden sie bestimmten Endpunkten unter Verwendung von app.use("/endpunkt", modul) zugewiesen. Zuletzt wird das Objekt app als Modul exportiert.
 
 ![Dateistruktur](./images/1.png)
 
@@ -305,3 +305,4 @@ Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 [stack]:https://stackoverflow.com/questions/48272135/how-do-i-avoid-getting-the-http-status-code-405
 [date]:https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date
 [repo]:https://de.wikipedia.org/wiki/Repository
+[npm]:https://www.npmjs.com/
