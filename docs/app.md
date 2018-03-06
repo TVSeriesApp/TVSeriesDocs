@@ -127,5 +127,26 @@ public boolean onQueryTextSubmit(String s) {
         Toast.makeText(getApplicationContext(), "Fehler mit der API.", Toast.LENGTH_LONG).show();
 }
 ```
+
+### Methode onNavigationItemSelected(MenuItem item)
+In dieser Methode wird das Auswählen von Menüpunkten in der linken Navigationsleiste verarbeitet. Dabei wird die ID, welche von der Navigationsleiste übergeben wird mit der ID des Menüpunktes verglichen und bei Überstimmung eine Abfolge an Methodenaufrufen ausgeführt, die das neue Layout (bzw. die neue Ansicht) laden und sichtbar machen. Die Funktion gibt true zurück, wenn ein Menüpunkt in der Seitenleiste angetippt wurde.
+
+```java
+public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    int id = item.getItemId();
+    
+    if (id == R.id.nav_search) {
+        //... Hier steht der Code, der beim Tippen auf den Eintrag "Suche/Search" im Seitenmenü tippt.
+    } else if (id == R.id.nav_watchlist) {
+        //...
+    } else if (id == R.id.nav_share) {
+        //...
+    } 
+    //usw...
+    DrawerLayout drawer = findViewById(R.id.drawer_layout);
+    drawer.closeDrawer(GravityCompat.START);
+    return true;
+}
+```
 ## Authentifizierung
 TODO!
