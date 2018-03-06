@@ -1,7 +1,10 @@
 
-# Benachrichtigungen
+# App
 
 ---
+
+## Benachrichtigungen
+TODO
 
 ## Einführung
 
@@ -24,4 +27,15 @@ Dabei bietet Google die Firebase Console GUI zum Vereinfachten Testen dieses Vor
 
 ## GUI
 
+Bei der GUI gibt es zwei Teilgebiete. Zum einen die [Layout-XML](https://developer.android.com/guide/topics/ui/declaring-layout.html) (= Extensible Markup Language) Dateien, welche den Aufbau, also Abstände, Farben, Icons und andere Initialwerte beinhalten, und zum anderen die [Activities](https://developer.android.com/guide/components/activities/index.html), welche die dynamischen Aspekte abdecken, also Nutzereingaben und Änderungen der Layouts sowie Bereitstellen der Daten für die Layouts.
+
+Im folgenden werden die Methoden der einzigen in dieser App vorhandenen Activity "MainActivity" kurz erklärt und vorgestellt. Hierbei ist anzumerken, dass das Verwenden einer einzelnen Activity für die gesamte App nicht sinnvoll ist und die einzelnen "Bildschirme" eher in einzelne Activities oder [Fragments](https://developer.android.com/guide/components/fragments.html) ausgelagert werden sollten. Da wir dies zum Beginn der Implementierung nicht wussten, wurde unser Ansatz aus Zeitgründen fortgesetzt.
+
+### Attribute der Klasse MainActivity
+
+Die hier deklarierten Attribute sind MenuItems und ein ActionButton und werden beim Öffnen der App erstellt und dann später weiterverwendet, um z.B. deren Sichtbarkeit zu verändern. Deswegen müssen diese Variablen in der gesamten Klasse als Attribute aufrufbar sein.
+
+Die Suche ist anfangs nicht aktiv, sodass die Suchansicht auch nicht gezeigt werden soll. Dafür wird hier searchActive auf false gesetzt, was dann in onCreateOptionsMenu abgefragt wird, sobald die App startet und das obere Menü erscheint.
+
 ## Authentifizierung
+TODO!
