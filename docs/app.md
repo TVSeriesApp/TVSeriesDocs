@@ -12,7 +12,7 @@ TODO ..?
 
 >Notifications, d.h. Benachrichtigungen über den Zeitpunkt des Erscheinens der neuesten Folge einer ausgewählten Serie, werden über [FCM](#FCM NOtifications) (Firebase Cloud Messaging) realisiert.
 
->Die Kommunikation mit der API zur Abfrage von Serieninformationen funktioniert über HTTP-GET-Abfragen (siehe [API](api.md#API)).
+>Die Kommunikation mit der API zur Abfrage von Serieninformationen funktioniert über HTTP-GET-Abfragen (siehe [API](server.md#API)).
 
 ### FCM Notifications
 
@@ -20,7 +20,7 @@ TODO ..?
 
 Wenn aus der App eine Anfrage für eine Benachrichtigung (z.B. durch das Hinzufügen einer Serie in die eigene Watchlist) an unseren Server über eine HTTP-POST-Anfrage gesendet wird, reagiert dieser durch eine eigene Push-Benachrichtigung via Firebase.
 
-Im Falle einer Anfrage eines Benutzers mit eigenem Account, wird zuerst eine Anfrage an die Firebase Datenbank gestellt, um die persönliche Watchlist zu aktualisieren. Mit dem erhaltenen Token wird nun eine Anfrge an den Server gestellt, die Benachrichtung via FCM auszustellen. Zum Füllen ebendieser Benachrichtigung mit den richtigen Daten, bzw. um die korrekte Überlieferungszeit zu gewährleisten, fragt der Server diese Informationen durch weitere Anfragen wie [getSeriesbyId](API.md#getSeriesById) ab, und die Benachrichtigung wird mit dem gewollten Inhalt zur richtigen Zeit über FCM ausgestellt.
+Im Falle einer Anfrage eines Benutzers mit eigenem Account, wird zuerst eine Anfrage an die Firebase Datenbank gestellt, um die persönliche Watchlist zu aktualisieren. Mit dem erhaltenen Token wird nun eine Anfrge an den Server gestellt, die Benachrichtung via FCM auszustellen. Zum Füllen ebendieser Benachrichtigung mit den richtigen Daten, bzw. um die korrekte Überlieferungszeit zu gewährleisten, fragt der Server diese Informationen durch weitere Anfragen wie [getSeriesbyId](server.md#getSeriesById) ab, und die Benachrichtigung wird mit dem gewollten Inhalt zur richtigen Zeit über FCM ausgestellt.
 
 Dabei bietet Google die Firebase Console GUI zum Vereinfachten Testen dieses Vorganges, auch ohne eigenen Server. Diese Funktion kann auch benutzt werden, um einfach und schnell an bestimmte Nutzergruppen der App Benachrichtigungen zu versenden, z.B. nur an Nutzer in bestimmten Ländern oder Altersgruppen.
 ![](https://firebase.google.com/docs/cloud-messaging/images/messaging-overview.png)
@@ -178,7 +178,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 ```
 
 ### Methode getSeriesById(Context context, final String seriesID)
-Diese Methode steuert einen API-Endpunkt (siehe [API-Dokumentation](http://www.tvseriesapp.tk/#/api?id=getseriesbyid)) an, welcher bei Übergabe der Serien-ID (eindeutige Nummer zur Identifikation einer Serie in der Datenbank) Informationen über diese Serie in Form eines JSONObjects liefert. In dieser Methode wird außerdem eine detaillierte Listenansicht zur Anzeige einzelner Suchergebnisse nach Antippen eines Eintrags in der Suchergebnisliste (weiter unten erklärt) erstellt und angezeigt, was aus Zeitgründen nicht in einer eigenen Methode realisiert wurde. Für die Listenansicht wird hier zuerst eine ArrayList des Typs String erstellt und diese dann durch einen sogenannten [Adapter](https://developer.android.com/reference/android/widget/ArrayAdapter.html) auf die Listenansicht (ListView) übertragen. Das funktioniert vereinfacht so: Der Adapter "kennt" die Daten und "weiß", wie ein Listeneintrag für einen Datensatz aussehen muss, wird der Adapter also auf die Listenansicht angewendet passiert das Erstellen von Einträgen automatisch.
+Diese Methode steuert einen API-Endpunkt (siehe [API-Dokumentation](http://www.tvseriesapp.tk/#/server?id=getseriesbyid)) an, welcher bei Übergabe der Serien-ID (eindeutige Nummer zur Identifikation einer Serie in der Datenbank) Informationen über diese Serie in Form eines JSONObjects liefert. In dieser Methode wird außerdem eine detaillierte Listenansicht zur Anzeige einzelner Suchergebnisse nach Antippen eines Eintrags in der Suchergebnisliste (weiter unten erklärt) erstellt und angezeigt, was aus Zeitgründen nicht in einer eigenen Methode realisiert wurde. Für die Listenansicht wird hier zuerst eine ArrayList des Typs String erstellt und diese dann durch einen sogenannten [Adapter](https://developer.android.com/reference/android/widget/ArrayAdapter.html) auf die Listenansicht (ListView) übertragen. Das funktioniert vereinfacht so: Der Adapter "kennt" die Daten und "weiß", wie ein Listeneintrag für einen Datensatz aussehen muss, wird der Adapter also auf die Listenansicht angewendet passiert das Erstellen von Einträgen automatisch.
 ```java
 final ListView lvD = findViewById(R.id.listViewDetailed); //Die Listenansicht ListViewDetailed finden und in Variable speichern
 
@@ -195,7 +195,7 @@ lvD.setAdapter(adapterDetails); // Den Adapter auf die Listenansicht anwenden
 ```
 
 ### Methode postNewSeriesByName(Context context, final String seriesName)
-Diese Methode steuert einen API-Endpunkt (siehe [API-Dokumentation](http://www.tvseriesapp.tk/#/api?id=getseriesbyname)) an, welcher bei Übergabe eines Such-Strings Serien mit zur Suchphrase passenden Titel in Form eines JSONArrays liefert. In dieser Methode wird außerdem Listenansicht zur Anzeige aller Suchergebnisse mit Titel und Handlungsübersicht erstellt und angezeigt, was aus Zeitgründen nicht in einer eigenen Methode realisiert wurde. Auch hier wird wieder ein Adapter verwendet ([simpleAdapter](https://developer.android.com/reference/android/widget/SimpleAdapter.html)), der ähnlich wie bei getSeriesById arbeitet, jedoch auch zwei oder mehr Daten pro Listeneintrag anwenden kann, die er aus einer [Hashmap](https://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html) bekommt. Der Listenansicht wird hier solange ein neuer Eintrag hinzugefügt, bis die Länge des JSONArrays und damit auch das Ende der Suchergebnisse erreicht ist.
+Diese Methode steuert einen API-Endpunkt (siehe [API-Dokumentation](http://www.tvseriesapp.tk/#/server?id=getseriesbyname)) an, welcher bei Übergabe eines Such-Strings Serien mit zur Suchphrase passenden Titel in Form eines JSONArrays liefert. In dieser Methode wird außerdem Listenansicht zur Anzeige aller Suchergebnisse mit Titel und Handlungsübersicht erstellt und angezeigt, was aus Zeitgründen nicht in einer eigenen Methode realisiert wurde. Auch hier wird wieder ein Adapter verwendet ([simpleAdapter](https://developer.android.com/reference/android/widget/SimpleAdapter.html)), der ähnlich wie bei getSeriesById arbeitet, jedoch auch zwei oder mehr Daten pro Listeneintrag anwenden kann, die er aus einer [Hashmap](https://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html) bekommt. Der Listenansicht wird hier solange ein neuer Eintrag hinzugefügt, bis die Länge des JSONArrays und damit auch das Ende der Suchergebnisse erreicht ist.
 ```java
 List<Map<String, String>> data = new ArrayList<>();
 for (int j = 0; j<arr.length();) {
