@@ -4,21 +4,20 @@
 
 ## Einführung
 
-> Um die benötigten Informationen über die Serien unsere App zu bekommen, benutzen wir die für uns kostenlose [tv-db API](https://api.thetvdb.com/swagger). Hinter dieser API (Appilcation Programming Interface, dt. Schnittstelle zur Anwenderprogrammierung) steht die Datenbank von [www.thetvdb.com](https://www.thetvdb.com), welche eine große Anzahl an Datensätze über viele verschiedene Serien enthält.
+Um die benötigten Informationen über die Serien unsere App zu bekommen, benutzen wir die für uns kostenlose [tv-db API][api]. Hinter dieser API (Appilcation Programming Interface, dt. Schnittstelle zur Anwenderprogrammierung) steht die Datenbank von [www.thetvdb.com][tvdb], welche eine große Anzahl an Datensätze über viele verschiedene Serien enthält.
+Allerdings hatte wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS][cors] Protokolls.  Also stellten wir [eine Frage auf der Q&A Seite Stackoverflow][stack]. Die erhaltenen Antoworten halfen uns sehr bei der Lösung des Problems
 
-> Allerdings hatte wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) Protokolls.  Also stellten wir [eine Frage auf der Q&A Seite Stackoverflow](https://stackoverflow.com/questions/48272135/how-do-i-avoid-getting-the-http-status-code-405). Die erhaltenen Antoworten halfen uns sehr bei der Lösung des Problems
+Um das Problem zu lösen entschied ich mich dazu einen eigenen Server zu erstellen, welcher die Anfragen an den TVDB Server weiterleitet.
 
-Um das Problem zu lösen entschied ich mich dazu einen eigenen Server zu erstellen, welcher die Anfragen an den TVDB Server weiterleitet. 
+Wir entschieden uns für die Plattform [node.js][node] und das [framework][frame] [express.js][express], da Arda einerseits schon [ein wenig Erfahrung][Disbot] mit node.js hatte und andererseits express.js sehr einsteigerfreundlich erschien.
 
-Wir entschieden uns für die Plattform [node.js][node] und das [framework][frame] [express.js][http://expressjs.com/], da Arda einerseits schon [ein wenig Erfahrung][Disbot] mit node.js hatte und andererseits express.js sehr einsteigerfreundlich erschien. 
-
-> Bei der Interaktion mit der Datenbank entschieden wir uns für die Benutzung eines [API-wrappers für die TVDB API](https://www.npmjs.com/package/node-tvdb). Bei einem API wrapper handelt es sich um eine Programmbibliothek, welche den Umgang mit der API vereinfacht.
+Bei der Interaktion mit der Datenbank entschieden wir uns für die Benutzung eines [API-wrappers für die TVDB API][node-tvdb]. Bei einem API wrapper handelt es sich um eine Programmbibliothek, welche den Umgang mit der API vereinfacht.
 
 Eine weitere Aufgabe des Servers sollte die Sendung von Push Notifications an bestimmte Geräte senden. Dies ist mithilfe des [Firebase Admin SDKs][firebase] möglich.
 
-> Der Server wird auf [heroku](https://heroku.com) gehostet, damit er über das Internet erreichbar ist. Wir entschieden uns für heroku, da die Plattform einsteigerfreundlich ist und einen guten kostenlosen Plan anbietet. Die URL des Servers lautet [tvdb-rest.herokuapp.com](https://tvdb-rest.herokuapp.com/).
+Der Server wird auf [heroku][heroku] gehostet, damit er über das Internet erreichbar ist. Wir entschieden uns für heroku, da die Plattform einsteigerfreundlich ist und einen guten kostenlosen Plan anbietet.
 
-Die URL des Servers lautet [tvdb-rest.herokuapp.com](https://tvdb-rest.herokuapp.com/).
+Die URL des Servers lautet [tvdb-rest.herokuapp.com][tvdbheroku].
 
 Um mit dem Server interagieren zu können schicken wir von der App aus über das Internet sogenannte [http-requests (HTTP Anfragen)][http]. Wenn es nur darum geht Daten vom Server zu empfangen benutzen wir GET Anfragen. Wenn wir auch Daten von der App an den Server übermitteln müssen benutzen wir POST Anfragen
 
@@ -34,9 +33,9 @@ Ein Beispiel für JSON :
 
 ```javascript
 {
-    "name": "John", 
-    "age": 30, 
-    "car": null 
+    "name": "John",
+    "age": 30,
+    "car": null
 }
 
 ```
@@ -45,15 +44,62 @@ Der Server empfängt JSON Objekte, welche allerdings in Form eines einzigen Stri
 
 Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eines einzigen Strings gesendet werden. Um diese Objekte programmatisch weiterzuverwenden müssen sie zuerst [geparst](https://de.wikipedia.org/wiki/Parser) werden.
 
-----
+## Dateistruktur
 
-#### Anmerkung: 
+### Über Module in nod.js
+
+In node.js kann mithilfe des module.exports Attributs eine variable (egal ob Methode, Objekt oder anders) als Modul angeboten werden. Mithilfe der require('./PFAD/ZU/DATEI') Methode kann ein Modul importiert werden. Es können auch Moudle aus dem Internet mithilfe von [npm][npm] heruntergeldaen werden. Diese haben können eine große Anzahl an verschieden Funktionen haben. So ist etwas auch das von mir beutzte [Framework][frame] express.js ein node.js Modul. In anderen Programmiersprachen würde man diese als Programmbibliothek bezeichnen. Alle Module werden im Ordner node_modules gespeichert. Allerdings werden die Namen und Versionen der Module auch in einer Datei namens package.json unter dem Attribut dependencies gespeichert. Dies erlaubt die Benutzung der "npm i" Anweisung in der Konsole (z.B. cmd), welche alle in package.json gelisteten dependencies (zu dt. Abhängigkeiten, also Module ohne welche das Prgramm nicht funktioniert) herunterlädt. Dies hat die Konsequenz das der node_modules Ordner, welcher schon einmal mehrere Hundert Megabyte groß sein kann, nicht auf remote repositorys (zu dt. externe [repositorys][repo]) wie GitHub hochgeladen werden muss. Wenn man das Projekt lokal zum Laufen bringen will, muss man einfach die "npm i" Anweisung ausführen.
+
+**Zu den Funktionen einiger Dateien:**
+
+<p style="color:#FF0005; font-family:Roboto Mono,Monaco,courier,monospace">server.js:</p>
+
+Dies ist die Datei, die bei Start des Serves ausgeführt wird. Es wird eine HTTP Anfrage an Heroku geschickt um die config vars (zu dt. Konfigurationsvariablen) abzurufen. Dieser werden benötigt, da der TVDB API key nicht lokal gespeichert, sondern bei Heroku als ebensolche config var gespichert wird. Dieser key wird dann als Umgebungsvariable lokal gespeichert. Der TVDB API key ist notwendig um Anfragen an die TVDB zu stellen. Außerdem pingt sich der Server alle 5 Minuten selbst, damit er nicht in einen Standby Modus verfällt. Dies ist eine Limitierung des kostenlosen Angebots von Heroku.
+
+<p style="color:#F7DF1E; font-family:Roboto Mono,Monaco,courier,monospace">app.js:</p>
+
+Diese Datei ist für die Zuweisung der Endpunkte verantwortlich. Mithilfe der 
+
+![Dateistruktur](./images/1.png)
+
+![Legende](./images/2.png)
+
+![Methoden](./images/3.1.png)
+
+**latestFunction (eps, dates)**
+
+| Paramter   | Datenyp | Beschreibung |
+| --------- |:-----:| ------- |
+| eps   | `Array` | Besteht aus JSON Objekten, welche Informationen über Episoden einer Serie enthalten  |
+| dates  | `Array` | Enthält die den Episoden entsprechenden Zeitpunkte in Form von [Date][date] Objekten. |
+
+![Methoden](./images/3.2.png)
+
+**sendMessage (options)**
+
+| Paramter   | Datenyp | Beschreibung | Paramter  | Datenyp | Beschreibung |
+| --------- |:-----:| ------- | --------- |:-----:| ------- |
+| options   | <p style="color:#42B983; font-family:Roboto Mono,Monaco,courier,monospace">JSON</p>| Objekt bestehend aus: | token |String | device token des Handys, an das die Nachricht gesendet werden soll. Siehe dazu auch: App/firebase
+| | | | title |String | Titel der Nachricht |
+| | | | body | String | Inhalt der Nachricht
+| | | | priority |String | Priorität der Nachricht. Entweder "high" oder "low" (zu dt. "hoch" oder "niderig")
+
+**sendNotifMessage (series_id, uid)**
+
+| Paramter   | Datenyp | Beschreibung |
+| --------- |:-----:| ------- |
+| series_id   | `String` | series_id der Series, zu der eine Nachricht geschickt werden soll.  |
+| uid  | `String` | uid des Nutzers, an den die Nachricht geschickt werden soll. |
+
+---
+
+### Anmerkung: 
 
 Standardmäßig sind alle Ergebnisse von GET Endpunkten in englischer Sprache. Um Ergebnisse in anderen Sprachen  zu erhalten, muss ein weiterer Query String an die URL angehängt werden. Der Paramter lautet "lang" und muss einem der im Folgenden gelisteten Sprachkürzel entsprechen.
 
 Beispiel:
 
-> https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=de
+> <https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=de>
 
 Zurzeit werden drei Sprachen unterstützt:
 
@@ -67,14 +113,13 @@ Anmerkung: Beim dritten Beispiel wird kein Ergebnis gefunden, da die Serie im Sp
 
 > https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=El%20joven%20Sheldon&lang=es 
 
-
-----
+---
 
 ## Endpunkte für den Server
 
 Die einzelnen URLs, über welche der Server erreichbar ist, nennt man Endpunkte.
 
-Beispiel: 
+Beispiel:
 
 > https://tvdb-rest.herokuapp.com/getSeriesByName
 
@@ -176,13 +221,14 @@ Response [JSON][json] bestehend aus einem Array aus Episoden.
             "overview": /*Sprache des Überblicks über den Inhalt*/
         },
         "lastUpdated": /*Zeitpunkt des letzten Updates*/,
-        "overview": /*Überblick über die Handlung*/        
+        "overview": /*Überblick über die Handlung*/
     },
     //...
     //weitere Episoden
 ]
 
 ```
+
 #### /getLatestEpisodeById
 
 **POST**
@@ -211,7 +257,7 @@ Response [JSON][json] bestehend aus einer Episode
                 "overview": /*Sprache des Überblicks*/
             },
             "lastUpdated": /*Zeitpunkt des letzten Updates*/,
-            "overview": /*Überblick über die Handlung der Episode*/        
+            "overview": /*Überblick über die Handlung der Episode*/
 }
 ```
 
@@ -236,11 +282,12 @@ Schickt eine Benachrichtigung mithilfe von [fcm](https://firebase.google.com/pro
 
 Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 
-```
+```javascript
 {
-   Message sent!                 
+   Message sent!
 }
 ```
+
 [node]:https://nodejs.org/de/
 [Disbot]:https://github.com/ayykamp/discbot
 [frame]:https://de.wikipedia.org/wiki/Framework
@@ -248,3 +295,13 @@ Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 [json]:https://www.json.org/json-de.html
 [http]:https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP-Anfragemethoden
 [http-all]:https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol
+[express]:https://www.expressjs.com
+[api]:https://api.thetvdb.com/swagger
+[tvdb]:https://thetvdb.com/
+[tvdbheroku]:https://tvdb-rest.herokuapp.com
+[heroku]:https://heroku.com/
+[node-tvdb]:https://www.npmjs.com/package/node-tvdb
+[cors]:https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing
+[stack]:https://stackoverflow.com/questions/48272135/how-do-i-avoid-getting-the-http-status-code-405
+[date]:https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date
+[repo]:https://de.wikipedia.org/wiki/Repository
