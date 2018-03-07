@@ -4,7 +4,7 @@
 
 Entwicklungsziel ist eine Android-App, die es ermöglicht nach Serien zu suchen, Ergebnisse 
 anzuzeigen und in einer Detailansicht weitere Informationen darzustellen. Desweiteren sollen Serien einer Watchlist hinzugefügt werden, damit diese später einfach wiedergefunden werden können. Sobald nun eine 
-neue Folge einer Serie erscheint, die auf der eigenen Watchlist steht werden die Nutzenden durch eine [Push-Benachrichtigung](android.md#Notifications) benachrichtigt.
+neue Folge einer Serie erscheint, die auf der eigenen Watchlist steht, werden die Nutzenden durch eine [Push-Benachrichtigung](android.md#Notifications) benachrichtigt.
 
 Dies wird ermöglicht durch den [API](api.md#API)-Zugriff auf die Datenbank von thetvdb.com und die Cloud-
 Messaging Funktion des Google-Dienstes Firebase sowie die App-Entwicklungsumgebung Android 
