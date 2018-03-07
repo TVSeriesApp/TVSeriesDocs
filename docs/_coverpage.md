@@ -2,7 +2,7 @@
 
 # The TV Series App <small>0.21</small>
 
-> The ~~102412th~~ **only** App to get notifications about your favorite TV shows!
+> The App to get notifications about your favorite TV series!
 
 
 [GitHub Backend](https://github.com/AyyKamp/tvdb-rest)
