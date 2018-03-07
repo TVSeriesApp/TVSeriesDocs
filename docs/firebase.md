@@ -53,3 +53,9 @@ _Abb. zeigt die Nutzerübersicht in der Firebase Console_
 ![](./images/fcm1.png)
 
 [admin]:https://firebase.google.com/docs/admin/setup
+
+
+
+Damit Nutzer der App Benachrichtigungen erhalten können, muss der im Hintergrund laufende Benachrichtigungs-Service von Android angesprochen werden. Dies geschieht mithilfe von Firebase Cloud Messaging, einem Online-Service bereitgestellt von Google, welcher ein Framework für das Erstellen und Senden von [Push-Nachrichten](https://de.wikipedia.org/wiki/WAP-Push) bereitstellt.
+
+
