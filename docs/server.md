@@ -423,3 +423,4 @@ Rückmeldung wenn der Eintrag nicht bei Firestore vorliegt.
 [date]:https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date
 [repo]:https://de.wikipedia.org/wiki/Repository
 [npm]:https://www.npmjs.com/
+[strings]:https://de.wikipedia.org/wiki/Query_String
