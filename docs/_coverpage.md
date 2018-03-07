@@ -1,6 +1,6 @@
 <!-- ![](yes.png) -->
 
-# The TV Series App <small>0.21</small>
+# The TV Series App <small>1.0</small>
 
 > The App to get notifications about your favorite TV series!
 
