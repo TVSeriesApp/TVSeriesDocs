@@ -127,6 +127,11 @@ Beispiel:
 
 ### Interaktion mit thetvdb.com
 
+![](./images/datenfluss.png)
+
+*Abb. zeigt ein Datenflussdiagramm für jegliche Interaktionen mit der TVDB*
+*Peile von rechts nach links zeigen eine Anfrage und Pfeile von rechts nach links stellen eine Antwort dar*
+
 #### /getSeriesByName
 
 **GET**
