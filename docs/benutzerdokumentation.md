@@ -49,6 +49,6 @@ Zum Anderen können Nutzende zur Watchlist-Ansicht wechseln und sehen nun, dass 
 
 ![](https://media.discordapp.net/attachments/402801501866688512/420679285519417345/Screenshot_20180306-211901.jpg?width=380&height=676)
 
-In der Watchlist ist es außerdem möglich, die Serien mit anderen Personen zu teilen, zum Beispiel via WhatsApp, Discord oder E-mail:
+In der Navigationsleiste ist es außerdem möglich, die App mit anderen Personen zu teilen, zum Beispiel via WhatsApp, Discord oder E-mail:
 
 ![](https://media.discordapp.net/attachments/402801501866688512/420679238606389260/Screenshot_20180306-211921.jpg?width=380&height=676)
