@@ -254,7 +254,7 @@ Serie zuständig. Sie wird durch einen FloatingActionButton in der Detailansicht
 an den Endpoint /addWatchlistItem mithilfe von Nutzeridentifikations-ID und der gewünschten Serien-ID,
 im Anwendungsfall stets der ID der zurzeit betrachteten Serie.
 ```java
-@Override
+            @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 //Festlegung der Parameter
@@ -268,6 +268,34 @@ im Anwendungsfall stets der ID der zurzeit betrachteten Serie.
                 return params;
             }
 ```
+## Methode postToken
+Diese Methode sendet ein Firebase-Device-Token, d.h. die Identifizierung einer Instanz der App auf einem Gerät.
+Dabei hat jedes Gerät sein eigenes Device-Token, und dient somit in Kombination mit der ID des Nutzers in der
+Datenbank (der UID) als eindeutige Identifizierung und folglich Verknüpfung von Benutzern und ihren Geräten.
+Benutzt wird die Methode um die erfolgreiche Herstellung einer weiteren Kommunikation zwischen Server und App
+zu gewährleisten. Wie auch bei anderen HTTP-Anfrage-Methoden wird auch hier die Methode bei Fehlschlag bis zu vier
+Male erneut aufgerufen, um sicherzustellen dass der Server sich nicht mehr im Sleep-Modus befindet, d.h. inaktiv ist.
+```java
+@Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("POST", error.toString());
 
+                if (tolerance < 4) {
+                    try {
+                        postToken(getApplicationContext());
+                    } catch (JSONException e) {
+                        Log.e("POST", e.toString());
+                    }
+                    tolerance++;
+                } else {
+                    Log.e("Too many Volley Errors, stopped trying", error.toString());
+                }
+
+            }
+``
+
+
+    
+    
 ## Authentifizierung
 TODO!
