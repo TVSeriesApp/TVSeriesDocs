@@ -5,4 +5,4 @@
 * [Projektverlauf](projektverlauf.md)
 * [Benutzerdokumentation](benutzerdokumentation.md)
 
-* <img src="./images/build.png" style="padding-top:50px">
+* <img src="./images/build.png" style="padding-top:50px;margin-left:-30px">
