@@ -340,7 +340,7 @@ Response [JSON][json] bestehend aus der Watchlist des Nutzers
 ]
 ```
 
-#### /addWatchlistItem <img src="./images/firestore5.png" height="40" width="40"> <img src="./images/fcm.png" alt="Smiley face" height="40" width="40">
+#### /addWatchlistItem <img src="./images/firestore5.png" height="40" width="40">
 
 **POST**
 
