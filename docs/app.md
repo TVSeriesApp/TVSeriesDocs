@@ -19,9 +19,9 @@
 
 Wenn aus der App eine Anfrage für eine Benachrichtigung (z.B. durch das Hinzufügen einer Serie in die eigene Watchlist) an unseren Server über eine HTTP-POST-Anfrage gesendet wird, reagiert dieser durch eine eigene Push-Benachrichtigung via Firebase.
 
-Im Falle einer Anfrage eines Benutzers mit eigenem Account, wird zuerst eine Anfrage an die Firebase Datenbank gestellt, um die persönliche Watchlist zu aktualisieren. Mit dem erhaltenen Token wird nun eine Anfrage an den Server gestellt, die Benachrichtung via FCM auszustellen. Zum Füllen ebendieser Benachrichtigung mit den richtigen Daten, bzw. um die korrekte Überlieferungszeit zu gewährleisten, fragt der Server diese Informationen durch weitere Anfragen wie [getSeriesbyId](server.md#getSeriesById) ab, und die Benachrichtigung wird mit dem gewollten Inhalt zur richtigen Zeit über FCM ausgestellt.
+Im Falle einer Anfrage von Nutzenden mit eigenem Account, wird zuerst eine Anfrage an die Firebase Datenbank gestellt, um die persönliche Watchlist zu aktualisieren. Mit dem erhaltenen Token wird nun eine Anfrage an den Server gestellt, die Benachrichtung via FCM auszustellen. Zum Füllen ebendieser Benachrichtigung mit den richtigen Daten, bzw. um die korrekte Überlieferungszeit zu gewährleisten, fragt der Server diese Informationen durch weitere Anfragen wie [getSeriesbyId](server.md#getSeriesById) ab, und die Benachrichtigung wird mit dem gewollten Inhalt zur richtigen Zeit über FCM ausgestellt.
 
-Dabei bietet Google die Firebase Console GUI zum Vereinfachten Testen dieses Vorganges, auch ohne eigenen Server. Diese Funktion kann auch benutzt werden, um einfach und schnell an bestimmte Nutzergruppen der App Benachrichtigungen zu versenden, z.B. nur an Nutzer in bestimmten Ländern oder Altersgruppen.
+Dabei bietet Google die Firebase Console GUI zum vereinfachten Testen dieses Vorganges, auch ohne eigenen Server. Diese Funktion kann auch benutzt werden, um einfach und schnell an bestimmte Nutzergruppen der App Benachrichtigungen zu versenden, z.B. nur an Nutzer in bestimmten Ländern oder Altersgruppen.
 ![](https://firebase.google.com/docs/cloud-messaging/images/messaging-overview.png)
 
 ---
@@ -100,7 +100,7 @@ if (lvD.getVisibility() == View.VISIBLE) {
     super.onBackPressed();
 ```
 ### Methode onCreateOptionsMenu(final Menu menu)
-Diese Methode wird aufgerufen, sobald das Menü in der oberen Leiste erstellt wird. Hier wird durch Abfragen von searchActive sichergestellt, dass die Suche, welche hier mit dem [MenuInflater](https://developer.android.com/reference/android/view/MenuInflater.html) aufgebaut wird,und das Suchmenü nur im Menüpunkt Suche angezeigt werden. 
+Diese Methode wird aufgerufen, sobald das Menü in der oberen Leiste erstellt wird. Hier wird durch Abfragen von searchActive sichergestellt, dass die Suche, welche hier mit dem [MenuInflater](https://developer.android.com/reference/android/view/MenuInflater.html) aufgebaut wird, und das Suchmenü nur im Menüpunkt Suche angezeigt werden. 
 ```java
 MenuInflater inflater = getMenuInflater();
 inflater.inflate(R.menu.menu_search, menu);
@@ -321,7 +321,7 @@ den Umweg über den Server (an den Endpoint /fcm), jedoch wurde sie bisher nur m
 Die Authentifizierung innerhalb der App ist umgesetzt mithilfe von drei Methoden. Diese sind nach dem offiziellen Beispiel von Google entworfen, und sind unterteilt in einen Benachrichtigungshelfer, eine Optionsseite (bzw. Klasse), und eine Aktivität zur Beschreibung der tatsächlichen Anzeige bei erfolgreicher Anmeldung.
 
 ### Klasse AuthUIActivity
-Diese Activity (bzw. Klasse) dient der Koordination des Einlogmechanismuses, d.h. ihre Funktion ist die Festlegung
+Diese Activity (bzw. Klasse) dient der Koordination des Einlogmechanismus d.h. ihre Funktion ist die Festlegung
 der für die mit Google, spezifischer unserem Firebase-Projekt, benötigten Parametern, sowie der
 Weiterleitung auf andere Activites.
 ```java
