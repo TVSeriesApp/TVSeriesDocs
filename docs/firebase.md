@@ -2,7 +2,7 @@
 
 ![](./images/build.png)
 
-Wir benutzen den Service Google Firebase aus einer Vielzahl an Gründen, welche wir im folgenden auflisten werden. Um mit diesem Dienst zu interagieren schickt die App HTTP Anfragen an unseren Server. Eine vollständige Dokumentation zu diesen lässt sich [hier](server.md#endpunkte-f%c3%bcr-den-server) finden. Serverseitig benutzen wir das node.js Modul ["firebase-admin"][admin].
+Wir benutzen den Service Google Firebase aus einer Vielzahl an Gründen, welche wir im folgenden auflisten werden. Um mit diesem Dienst zu interagieren, schickt die App HTTP-Anfragen an unseren Server. Eine vollständige Dokumentation zu diesen lässt sich [hier](server.md#endpunkte-f%c3%bcr-den-server) finden. Serverseitig benutzen wir das node.js Modul ["firebase-admin"][admin].
 
 ## Cloud Functions
 
@@ -17,7 +17,7 @@ _Abb. zeigt die Cloud Function in der Firebase Console_
 
 ![](./images/firestore4.png)
 
-Um die Daten von Nutzenden zu speichern benutzen wir den Service Firestore, welcher von Google Firebase anbgeboten wird. Die Struktur unserer Daten sieht folgendermaßen aus:
+Um die Daten von Nutzenden zu speichern, benutzen wir den Service Firestore, welcher von Google Firebase anbgeboten wird. Die Struktur unserer Daten sieht folgendermaßen aus:
 
 Die oberste Ebene bildet eine sogenannte Sammlung.
 
