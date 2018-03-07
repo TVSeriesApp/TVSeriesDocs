@@ -10,7 +10,7 @@ Wir benutzen den Service Google Firebase aus einer Vielzahl an Gründen, welche 
 
 Cloud Function sind in der Praxis Methoden, welche bei bestimmten Ereignissen ausgeführt werden. Um neue Nutzer effizient in unserer Datenbank (Cloud Firestore) zu speichern, enstchieden wir uns eine Cloud Function zu benutzen. Diese reagiert auf das Ereignis user().onCreate, also auf die Erstellung eines neuen Nutzers. Daraufhin werden bestimmte Daten des neu registrierten Nutzers in die Datnebank gespeichert.
 
-![](./images/functions1.png)
+![](./images/functions1.PNG)
 _Abb. zeigt die Cloud Function in der Firebase Console_
 
 ## Firestore
@@ -23,19 +23,19 @@ Die oberste Ebene bildet eine sogenannte Sammlung.
 
 In unserem Fall nannten wir diese "user" (zu dt. Nutzer).
 
-![](./images/firestore1.png)
+![](./images/firestore1.PNG)
 
 Eine Sammlung setzt sich zusammen aus vielen Dokumenten.
 
 Wir entschieden uns den nicht-deskriptive Name für die einzelnen Dokumente zu wählen um Dopplungen und andere Fehleranfälligkeiten zu vermeiden.
 
-![](./images/firestore2.png)
+![](./images/firestore2.PNG)
 
 Ein Dokument wiederum besteht aus Feldern. Diese können Strings, Nummern, booleans, Objekten, Arrays, Nulls, Timestamps (zu dt. Zeitpunkt/Zeitstempel), Geopoints oder Referenzen auf andere Dokumente seien.
 
 Wir entschieden uns displayname, email, photoURL, providerId, token und uid als Strings zu speichern. Die watchlist eines Nutzers peichern wir als Array, welcher sich aus Objekten zusammensetzt. Diese Objekte haben zwei Attribute: id und lang. Diese stehen für die Id der gespeicherten Serie und die Sprache in welcher diese gespeichert ist.
 
-![](./images/firestore3.png)
+![](./images/firestore3.PNG)
 
 ## Authentification
 
@@ -45,7 +45,7 @@ Wir benutzen außerdem den Authentification (zu dt. Authentifizierung) Service v
 
 Momentan unterstützen wir die Anmeldung und Registrierung via Email via und Google Account. Dabei wird jedem Nutzer automatisch eine einzigartige UID zugewiesen, welche im weiteren programmatsich verwendet werden kann.
 
-![Auth](./images/auth1.png)
+![Auth](./images/auth1.PNG)
 _Abb. zeigt die Nutzerübersicht in der Firebase Console_
 
 ## FCM
