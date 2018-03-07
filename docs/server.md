@@ -95,7 +95,7 @@ Diese Datei ist für die Zuweisung der Endpunkte verantwortlich. Mithilfe der re
 
 ---
 
-### Anmerkung: 
+### Anmerkung zu Sprachen
 
 Standardmäßig sind alle Ergebnisse von GET Endpunkten in englischer Sprache. Um Ergebnisse in anderen Sprachen  zu erhalten, muss ein weiterer Query String an die URL angehängt werden. Der Paramter lautet "lang" und muss einem der im Folgenden gelisteten Sprachkürzel entsprechen.
 
@@ -197,7 +197,7 @@ Antwort bestehend aus einem [JSON][json] Objekt, welches detaillierte Informatio
 
 #### /getEpisodesBySeriesId
 
-**POST**
+**GET**
 
 Durchsucht die Datenbank nach den Episoden einer Serie mithilfe des Parameters series_id und gibt diese zurück.
 
@@ -235,7 +235,7 @@ Response [JSON][json] bestehend aus einem Array aus Episoden.
 
 #### /getLatestEpisodeById
 
-**POST**
+**GET**
 
 Sucht nach der Episode einer Serie, die am nächsten in der Zukunft ausgestrahlt wird und gibt diese zurück. Verwendet wird hierfür der Parameter series_id
 
@@ -265,9 +265,9 @@ Response [JSON][json] bestehend aus einer Episode
 }
 ```
 
-### Interaktion mit Firebase 
+### Interaktion mit Firebase
 
-#### /fcm <img src="./images/fcm.png" alt="Smiley face" height="20" width="20">
+#### /fcm <img src="./images/fcm.png" alt="Smiley face" height="40" width="40">
 
 **POST**
 
@@ -288,7 +288,7 @@ Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 
 `Message sent!`
 
-#### /postToken
+#### /postToken <img src="./images/firestore5.png" height="40" width="40">
 
 **POST**
 
@@ -311,7 +311,7 @@ Rückmeldung wenn der Token bereits in dieser Form bei Firestore vorliegt.
 
 `Token not updated as there are no changes!`
 
-#### /getWatchlist
+#### /getWatchlist <img src="./images/firestore5.png" height="40" width="40">
 
 **POST**
 
@@ -335,11 +335,11 @@ Response [JSON][json] bestehend aus der watchlist des Nutzers
 ]
 ```
 
-#### /addWatchlistItem
+#### /addWatchlistItem <img src="./images/firestore5.png" height="40" width="40"> <img src="./images/fcm.png" alt="Smiley face" height="40" width="40">
 
 **POST**
 
-Fügt dem watchlist Array des Firestore Eintrags des entsprechenden Nutzers einen neuen Eintrag hinzu.
+Fügt dem watchlist Array des Firestore Eintrags des entsprechenden Nutzers einen neuen Eintrag hinzu. Sendet außerdem bei Austrahlung einer neuen Folge der Serie eine Benachrichtigung
 
 [JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
@@ -359,7 +359,7 @@ Rückmeldung wenn der Eintrag bereits in dieser Form bei Firestore vorliegt.
 
 `Item not added (duplicate)!`
 
-#### /removeWatchlistItem
+#### /removeWatchlistItem <img src="./images/firestore5.png" height="40" width="40">
 
 **DELETE**
 
@@ -382,7 +382,7 @@ Rückmeldung wenn der Eintrag nicht bei Firestore vorliegt.
 
 `Item not in the Watchlist!`
 
-#### /watchListNotif
+#### /watchListNotif <img src="./images/firestore5.png" height="40" width="40"> <img src="./images/fcm.png" alt="Smiley face" height="40" width="40">
 
 **POST**
 

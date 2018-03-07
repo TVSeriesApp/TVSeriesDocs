@@ -4,3 +4,5 @@
 * [App](app.md)
 * [Projektverlauf](projektverlauf.md)
 * [Benutzerdokumentation](benutzerdokumentation.md)
+
+* <img src="./images/build.png" style="padding-top:50px">
