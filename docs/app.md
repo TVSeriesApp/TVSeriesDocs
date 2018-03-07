@@ -220,7 +220,7 @@ SimpleAdapter sAdapter = new SimpleAdapter(MainActivity.this, data,
         new int[] {android.R.id.text1, android.R.id.text2});
 ```
 
-## Methode getWatchlist
+### Methode getWatchlist
 Die Methode getWatchlist wird bei jedem Besuch des Watchlist-Tabs, also auch bei Appstart ausgeführt. Sie fragt
 die nutzereigene, auf dem Server gespeicherte Watchlist ab, und lässt diese zugleich in einer ListView anzeigen.
 Außerdem wird auch ein FloatingActionButton zum Entfernen von Serien von der Watchlist erstellt bzw. als nicht
@@ -249,7 +249,7 @@ findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                 
 ```
 
-## Methode postWatchlist
+### Methode postWatchlist
 Die Methode postWatchlist ist für das Hinzufügen einer momentan in der Detailansicht der Suche dargestellten
 Serie zuständig. Sie wird durch einen FloatingActionButton in der Detailansicht aufgerufen und stellt eine Anfrage
 an den Endpoint /addWatchlistItem mithilfe von Nutzeridentifikations-ID und der gewünschten Serien-ID,
@@ -269,7 +269,7 @@ im Anwendungsfall stets der ID der zurzeit betrachteten Serie.
                 return params;
             }
 ```
-## Methode postToken
+### Methode postToken
 Diese Methode sendet ein Firebase-Device-Token, d.h. die Identifizierung einer Instanz der App auf einem Gerät.
 Dabei hat jedes Gerät sein eigenes Device-Token, und dient somit in Kombination mit der ID des Nutzers in der
 Datenbank (der UID) als eindeutige Identifizierung und folglich Verknüpfung von Benutzern und ihren Geräten.
@@ -295,7 +295,7 @@ Male erneut aufgerufen, um sicherzustellen dass der Server sich nicht mehr im Sl
             }
 ```
 
-## Methode postNewCustomFCM
+### Methode postNewCustomFCM
 Inzwischen befindet sich die Methode postNewCustomFCM nicht mehr in aktueller Benutzung, sondern ist nur
 noch für Debug-Zwecke relevant. Theoretisch ermöglicht sie das Senden angepasster Push-Nachrichten über
 den Umweg über den Server (an den Endpoint /fcm), jedoch wurde sie bisher nur mit einer Testnachricht genutzt.
