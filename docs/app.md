@@ -38,6 +38,7 @@ Im folgenden werden die Methoden der in dieser App zu 99% sichtbaren Activity "M
 MenuItem menuItemSearch;
 MenuItem menuItemOptions;
 FloatingActionButton fabWatchlist;
+FloatingActionButton fabWatchlist;
 ```
 Die hier deklarierten Attribute sind MenuItems und ein ActionButton und werden beim Öffnen der App erstellt und dann später weiterverwendet, um z.B. deren Sichtbarkeit zu verändern. Deswegen müssen diese Variablen in der gesamten Klasse als Attribute aufrufbar sein.
 
@@ -219,7 +220,7 @@ SimpleAdapter sAdapter = new SimpleAdapter(MainActivity.this, data,
         new int[] {android.R.id.text1, android.R.id.text2});
 ```
 
-## Methode getWatchlist
+### Methode getWatchlist
 Die Methode getWatchlist wird bei jedem Besuch des Watchlist-Tabs, also auch bei Appstart ausgeführt. Sie fragt
 die nutzereigene, auf dem Server gespeicherte Watchlist ab, und lässt diese zugleich in einer ListView anzeigen.
 Außerdem wird auch ein FloatingActionButton zum Entfernen von Serien von der Watchlist erstellt bzw. als nicht
@@ -248,7 +249,7 @@ findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                 
 ```
 
-## Methode postWatchlist
+### Methode postWatchlist
 Die Methode postWatchlist ist für das Hinzufügen einer momentan in der Detailansicht der Suche dargestellten
 Serie zuständig. Sie wird durch einen FloatingActionButton in der Detailansicht aufgerufen und stellt eine Anfrage
 an den Endpoint /addWatchlistItem mithilfe von Nutzeridentifikations-ID und der gewünschten Serien-ID,
@@ -268,7 +269,7 @@ im Anwendungsfall stets der ID der zurzeit betrachteten Serie.
                 return params;
             }
 ```
-## Methode postToken
+### Methode postToken
 Diese Methode sendet ein Firebase-Device-Token, d.h. die Identifizierung einer Instanz der App auf einem Gerät.
 Dabei hat jedes Gerät sein eigenes Device-Token, und dient somit in Kombination mit der ID des Nutzers in der
 Datenbank (der UID) als eindeutige Identifizierung und folglich Verknüpfung von Benutzern und ihren Geräten.
@@ -292,10 +293,99 @@ Male erneut aufgerufen, um sicherzustellen dass der Server sich nicht mehr im Sl
                 }
 
             }
-``
+```
+
+### Methode postNewCustomFCM
+Inzwischen befindet sich die Methode postNewCustomFCM nicht mehr in aktueller Benutzung, sondern ist nur
+noch für Debug-Zwecke relevant. Theoretisch ermöglicht sie das Senden angepasster Push-Nachrichten über
+den Umweg über den Server (an den Endpoint /fcm), jedoch wurde sie bisher nur mit einer Testnachricht genutzt.
+```java
+@Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("token", FirebaseInstanceId.getInstance().getToken());
+                params.put("title", "T E S T");
+                params.put("body", content);
+                params.put("priority", "high");
+                params.put("timetolive", "345600");
+
+                return params;
+            }
+```
+
 
 
     
     
 ## Authentifizierung
-TODO!
+Die Authentifizierung innerhalb der App ist umgesetzt mithilfe von drei Methoden. Diese sind nach dem offiziellen Beispiel von Google entworfen, und sind unterteilt in einen Benachrichtigungshelfer, eine Optionsseite (bzw. Klasse), und eine Aktivität zur Beschreibung der tatsächlichen Anzeige bei erfolgreicher Anmeldung.
+
+### Klasse AuthUIActivity
+Diese Activity (bzw. Klasse) dient der Koordination des Einlogmechanismuses, d.h. ihre Funktion ist die Festlegung
+der für die mit Google, spezifischer unserem Firebase-Projekt, benötigten Parametern, sowie der
+Weiterleitung auf andere Activites.
+```java
+//beispielhafte Methode
+public void signIn2() {
+        startActivityForResult(
+                AuthUI.getInstance().createSignInIntentBuilder()
+                        .setTheme(R.style.AppTheme)
+                        .setLogo(R.drawable.ic_live_tv_black_24dp)
+                        .setAvailableProviders(getSelectedProviders2())
+                        .setTosUrl(FIREBASE_TOS_URL)
+                        .setPrivacyPolicyUrl(FIREBASE_PRIVACY_POLICY_URL)
+                        .setIsSmartLockEnabled(true,
+                                true)
+                        .build(),
+                RC_SIGN_IN);
+    }
+```
+### Klasse SignedInActivity
+Diese Activity (bzw. Klasse) legt den in signed_in_layout angezeigten Inhalt fest, wie zum Beispiel die Account-Informationen des Nutzers. Dabei wird hier auch schon ein Nutzer-Token an den Server gesendet (siehe postToken).
+```java
+@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            startActivity(AuthUiActivity.createIntent(this));
+            finish();
+            return;
+        }
+
+        mIdpResponse = getIntent().getParcelableExtra(EXTRA_IDP_RESPONSE);
+        mSignedInConfig = getIntent().getParcelableExtra(EXTRA_SIGNED_IN_CONFIG);
+
+        setContentView(R.layout.signed_in_layout);
+        ButterKnife.bind(this);
+        populateProfile();
+        try {
+            postTokenPLS(getApplicationContext());
+        } catch (JSONException e) {
+            Log.e("POST","Unable to post Token: "+e.toString());
+        }
+    }
+```
+
+### Klasse SignInResultNotifier
+Diese Klasse kann unabhängig von Aufrufdauer und folglich Lebenszeit einzelner Aktivitäten aufgerufen
+werden und wird für die Anzeige erfolgreicher oder fehlgeschlagener Authentifizierung genutzt.
+```java
+public class SignInResultNotifier implements OnCompleteListener<AuthResult> {
+    private Context mContext;
+
+    public SignInResultNotifier(Context context) {
+        mContext = context.getApplicationContext();
+    }
+
+    @Override
+    public void onComplete(@NonNull Task<AuthResult> task) {
+        if (task.isSuccessful()) {
+            Toast.makeText(mContext, R.string.signed_in, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(mContext, R.string.anonymous_auth_failed_msg, Toast.LENGTH_LONG).show();
+        }
+    }
+}
+```
