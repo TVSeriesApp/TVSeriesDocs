@@ -6,7 +6,7 @@
 
 
 [GitHub Backend](https://github.com/AyyKamp/tvdb-rest)
-[GitHub Frontend + Notifs](https://github.com/massenmensch/TheTVSeriesApp)
+[GitHub Frontend + Notifications](https://github.com/massenmensch/TheTVSeriesApp)
 [Information](#Info)
 
 <!-- ![](https://media.discordapp.net/attachments/410171118310391808/410550886096568331/unknown.png) -->
