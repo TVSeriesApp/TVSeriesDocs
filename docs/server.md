@@ -48,13 +48,13 @@ Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eine
 
 ### Über Module in node.js
 
-In node.js kann mithilfe des module.exports Attributs, eine Variable (egal ob Methode, Objekt oder anders) als Modul angeboten werden. Mithilfe der require('./PFAD/ZU/DATEI') Methode kann ein Modul importiert werden. Es können auch Moudle aus dem Internet mithilfe von [npm][npm] heruntergeldaen werden. Diese haben können eine große Anzahl an verschieden Funktionen haben. So ist etwas auch das von mir beutzte [Framework][frame] express.js ein node.js Modul. In anderen Programmiersprachen würde man diese als Programmbibliothek bezeichnen. Alle Module werden im Ordner node_modules gespeichert. Allerdings werden die Namen und Versionen der Module auch in einer Datei namens package.json unter dem Attribut dependencies gespeichert. Dies erlaubt die Benutzung der "npm i" Anweisung in der Konsole (z.B. cmd), welche alle in package.json gelisteten dependencies (zu dt. Abhängigkeiten, also Module ohne welche das Prgramm nicht funktioniert) herunterlädt. Dies hat die Konsequenz das der node_modules Ordner, welcher schon einmal mehrere Hundert Megabyte groß sein kann, nicht auf remote repositorys (zu dt. externe [repositorys][repo]) wie GitHub hochgeladen werden muss. Wenn man das Projekt lokal zum Laufen bringen will, muss man einfach die "npm i" Anweisung ausführen.
+In node.js kann mithilfe des module.exports Attributs, eine Variable (egal ob Methode, Objekt oder anders) als Modul angeboten werden. Mithilfe der require('./PFAD/ZU/DATEI') Methode kann ein Modul importiert werden. Es können auch Module aus dem Internet mithilfe von [npm][npm] heruntergeladen werden. Diese können eine große Anzahl an verschiedenen Funktionen haben. So ist etwas auch das von uns beutzte [Framework][frame] express.js ein node.js Modul. In anderen Programmiersprachen würde man diese als Programmbibliothek bezeichnen. Alle Module werden im Ordner node_modules gespeichert. Allerdings werden die Namen und Versionen der Module auch in einer Datei namens package.json unter dem Attribut "dependencies" gespeichert. Dies erlaubt die Benutzung der "npm i" Anweisung in der Konsole (z.B. cmd), welche alle in package.json gelisteten dependencies (zu dt. Abhängigkeiten, also Module ohne welche das Programm nicht funktioniert) herunterlädt. Dies hat die Konsequenz das der node_modules Ordner, welcher schon einmal mehrere Hundert Megabyte groß sein kann, nicht auf remote repositorys (zu dt. externe [repositorys][repo]) wie GitHub hochgeladen werden muss. Wenn man das Projekt lokal zum Laufen bringen will, muss man einfach die "npm i" Anweisung ausführen.
 
 **Zu den Funktionen einiger Dateien:**
 
 <p style="color:#FF0005; font-family:Roboto Mono,Monaco,courier,monospace">server.js:</p>
 
-Dies ist die Datei, die bei Start des Serves ausgeführt wird. Es wird eine HTTP Anfrage an Heroku geschickt um die config vars (zu dt. Konfigurationsvariablen) abzurufen. Dieser werden benötigt, da der TVDB API key nicht lokal gespeichert, sondern bei Heroku als ebensolche config var gespichert wird. Dieser key wird dann als Umgebungsvariable lokal gespeichert. Der TVDB API key ist notwendig um Anfragen an die TVDB zu stellen. Außerdem pingt sich der Server alle 5 Minuten selbst, damit er nicht in einen Standby Modus verfällt. Dies ist eine Limitierung des kostenlosen Angebots von Heroku.
+Dies ist die Datei, die bei Start des Serves ausgeführt wird. Es wird eine HTTP Anfrage an Heroku geschickt um die config vars (zu dt. Konfigurationsvariablen) abzurufen. Diese werden benötigt, da der TVDB API Schlüssel nicht lokal gespeichert, sondern bei Heroku als ebensolcher config var gespeichert wird. Dieser Schlüssel wird dann als Umgebungsvariable lokal gespeichert. Der TVDB API Schlüssel ist notwendig um Anfragen an die TVDB zu stellen. Außerdem pingt sich der Server alle 5 Minuten selbst, damit er nicht in einen Standby Modus verfällt. Dies ist eine Limitierung des kostenlosen Angebots von Heroku.
 
 <p style="color:#F7DF1E; font-family:Roboto Mono,Monaco,courier,monospace">app.js:</p>
 
@@ -84,7 +84,7 @@ Diese Datei ist für die Zuweisung der Endpunkte verantwortlich. Mithilfe der re
 | options   | <p style="color:#42B983; font-family:Roboto Mono,Monaco,courier,monospace">JSON</p>| Objekt bestehend aus: | token |String | device token des Handys, an das die Nachricht gesendet werden soll. Siehe dazu auch: App/firebase
 | | | | title |String | Titel der Nachricht |
 | | | | body | String | Inhalt der Nachricht
-| | | | priority |String | Priorität der Nachricht. Entweder "high" oder "low" (zu dt. "hoch" oder "niderig")
+| | | | priority |String | Priorität der Nachricht. Entweder "high" oder "low" (zu dt. "hoch" oder "niedrig")
 
 **sendNotifMessage (series_id, uid)**
 
@@ -97,7 +97,7 @@ Diese Datei ist für die Zuweisung der Endpunkte verantwortlich. Mithilfe der re
 
 ### Anmerkung zu Sprachen
 
-Standardmäßig sind alle Ergebnisse von GET Endpunkten in englischer Sprache. Um Ergebnisse in anderen Sprachen  zu erhalten, muss ein weiterer Query String an die URL angehängt werden. Der Paramter lautet "lang" und muss einem der im Folgenden gelisteten Sprachkürzel entsprechen.
+Standardmäßig sind alle Ergebnisse von GET Endpunkten in englischer Sprache. Um Ergebnisse in anderen Sprachen zu erhalten, muss ein weiterer Query String an die URL angehängt werden. Der Paramter lautet "lang" und muss einem der im Folgenden gelisteten Sprachkürzel entsprechen.
 
 Beispiel:
 
@@ -107,7 +107,7 @@ Zurzeit werden drei Sprachen unterstützt:
 
 | Sprache   | Sprachkürzel| Beispiel                                                                     |
 | --------- |:-----:| -----------------------------------------------------------------------------------|
-| Deustch   | de    |https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=de |
+| Deutsch   | de    |https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=de |
 | Englisch  | en    |https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=en |
 | Spanisch  | es    |https://tvdb-rest.herokuapp.com/getSeriesByName?series_name=Young%20Sheldon&lang=es |
 
@@ -180,7 +180,7 @@ Antwort bestehend aus einem [JSON][json] Objekt, welches detaillierte Informatio
     "aliases": /*Liste aus Alias*/,
     "banner": /*URL einer Grafik, die als Teaser-Banner dient*/,
     "seriesId": /*ID der Serie*/,
-    "status": /*Status der Serie: "fortlaufend" oder "beendet"*/,
+    "status": /*Status der Serie: "continuing" oder "ended"*/,
     "firstAired": /*Datum der Erstausstrahlung*/,
     "network": /*Fernsehnetzwerk der Serie*/,
     "networkId": /*ID des Fernsehnetzwerk der Serie*/,
@@ -297,7 +297,7 @@ Rückmeldung bei erfolgreichem Senden der Benachrichtigung.
 
 **POST**
 
-Speichert den device token eines Nutzers in dem, der uid entsprechenden Eintrag in Firestore.
+Speichert den device token von Nutzenden in dem, der uid entsprechenden Eintrag in Firestore.
 
 [JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
@@ -320,17 +320,17 @@ Rückmeldung wenn der Token bereits in dieser Form bei Firestore vorliegt.
 
 **POST**
 
-Gibt die watchlist eines Nutzers zurück.
+Gibt die Watchlist von Nutzenden zurück.
 
 [JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
 ```javascript
 {
-    "uid":/*uid des Nutzers dessen watchlist zurückgegeben werden soll*/
+    "uid":/*uid von Nutzenden dessen Watchlist zurückgegeben werden soll*/
 }
 ```
 
-Response [JSON][json] bestehend aus der watchlist des Nutzers
+Response [JSON][json] bestehend aus der Watchlist des Nutzers
 
 ```javascript
 [
@@ -344,7 +344,7 @@ Response [JSON][json] bestehend aus der watchlist des Nutzers
 
 **POST**
 
-Fügt dem watchlist Array des Firestore Eintrags des entsprechenden Nutzers einen neuen Eintrag hinzu.
+Fügt dem Watchlist Array des Firestore Eintrags von Nutzenden einen neuen Eintrag hinzu.
 
 [JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
@@ -368,7 +368,7 @@ Rückmeldung wenn der Eintrag bereits in dieser Form bei Firestore vorliegt.
 
 **DELETE**
 
-Entfernt einen Eintrag aus dem watchlist Array des Firestore Eintrags des entsprechenden Nutzers.
+Entfernt einen Eintrag aus dem Watchlist Array des Firestore Eintrags von entsprechenden Nutzenden.
 
 [JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
