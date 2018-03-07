@@ -5,9 +5,9 @@
 ## Einführung
 
 Um die benötigten Informationen über die Serien unsere App zu bekommen, benutzen wir die für uns kostenlose [tv-db API][api]. Hinter dieser API (Appilcation Programming Interface, dt. Schnittstelle zur Anwenderprogrammierung) steht die Datenbank von [www.thetvdb.com][tvdb], welche eine große Anzahl an Datensätzen über viele verschiedene Serien enthält.
-Allerdings hatte wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS][cors] Protokolls.  Also stellten wir [eine Frage auf der Q&A Seite Stackoverflow][stack]. Die erhaltenen Antoworten halfen uns sehr bei der Lösung des Problems
+Allerdings hatte wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS][cors] Protokolls.  Also stellten wir [die Frage: "How do I avoid getting the HTTP status code 405?" auf der Q&A Seite Stackoverflow][stack]. Die Antworten halfen uns sehr bei der Lösung des Problems
 
-Um das Problem zu lösen entschied ich mich dazu einen eigenen Server zu erstellen, welcher die Anfragen an den TVDB Server weiterleitet.
+Um das Problem zu lösen, entschieden wir uns dazu einen eigenen Server zu erstellen, welcher die Anfragen an den TVDB Server weiterleitet.
 
 Wir entschieden uns für die Plattform [node.js][node] und das [framework][frame] [express.js][express], da Arda einerseits schon [ein wenig Erfahrung][Disbot] mit node.js hatte und andererseits express.js sehr einsteigerfreundlich erschien.
 
@@ -48,7 +48,7 @@ Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eine
 
 ### Über Module in node.js
 
-In node.js kann mithilfe des module.exports Attributs eine variable (egal ob Methode, Objekt oder anders) als Modul angeboten werden. Mithilfe der require('./PFAD/ZU/DATEI') Methode kann ein Modul importiert werden. Es können auch Moudle aus dem Internet mithilfe von [npm][npm] heruntergeldaen werden. Diese haben können eine große Anzahl an verschieden Funktionen haben. So ist etwas auch das von mir beutzte [Framework][frame] express.js ein node.js Modul. In anderen Programmiersprachen würde man diese als Programmbibliothek bezeichnen. Alle Module werden im Ordner node_modules gespeichert. Allerdings werden die Namen und Versionen der Module auch in einer Datei namens package.json unter dem Attribut dependencies gespeichert. Dies erlaubt die Benutzung der "npm i" Anweisung in der Konsole (z.B. cmd), welche alle in package.json gelisteten dependencies (zu dt. Abhängigkeiten, also Module ohne welche das Prgramm nicht funktioniert) herunterlädt. Dies hat die Konsequenz das der node_modules Ordner, welcher schon einmal mehrere Hundert Megabyte groß sein kann, nicht auf remote repositorys (zu dt. externe [repositorys][repo]) wie GitHub hochgeladen werden muss. Wenn man das Projekt lokal zum Laufen bringen will, muss man einfach die "npm i" Anweisung ausführen.
+In node.js kann mithilfe des module.exports Attributs, eine Variable (egal ob Methode, Objekt oder anders) als Modul angeboten werden. Mithilfe der require('./PFAD/ZU/DATEI') Methode kann ein Modul importiert werden. Es können auch Moudle aus dem Internet mithilfe von [npm][npm] heruntergeldaen werden. Diese haben können eine große Anzahl an verschieden Funktionen haben. So ist etwas auch das von mir beutzte [Framework][frame] express.js ein node.js Modul. In anderen Programmiersprachen würde man diese als Programmbibliothek bezeichnen. Alle Module werden im Ordner node_modules gespeichert. Allerdings werden die Namen und Versionen der Module auch in einer Datei namens package.json unter dem Attribut dependencies gespeichert. Dies erlaubt die Benutzung der "npm i" Anweisung in der Konsole (z.B. cmd), welche alle in package.json gelisteten dependencies (zu dt. Abhängigkeiten, also Module ohne welche das Prgramm nicht funktioniert) herunterlädt. Dies hat die Konsequenz das der node_modules Ordner, welcher schon einmal mehrere Hundert Megabyte groß sein kann, nicht auf remote repositorys (zu dt. externe [repositorys][repo]) wie GitHub hochgeladen werden muss. Wenn man das Projekt lokal zum Laufen bringen will, muss man einfach die "npm i" Anweisung ausführen.
 
 **Zu den Funktionen einiger Dateien:**
 
