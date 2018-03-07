@@ -42,4 +42,4 @@ Das Kostenziel beträgt 0€ (bei Nicht-Publizierung der App im PlayStore).
 
 ## App-Download
 
-Die App ist momentan nur auf [Github](https://github.com/TVSeriesApp/TheTVSeriesApp/releases/download/v1.0/TheTVSeriesApp-v1.0.apk) herunterzuladen.
+Die App ist momentan nur auf [Github](https://github.com/TVSeriesApp/TheTVSeriesApp/releases/) herunterzuladen.
