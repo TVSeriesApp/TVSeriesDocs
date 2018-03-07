@@ -248,7 +248,26 @@ findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                 
 ```
 
-   
+## Methode postWatchlist
+Die Methode postWatchlist ist für das Hinzufügen einer momentan in der Detailansicht der Suche dargestellten
+Serie zuständig. Sie wird durch einen FloatingActionButton in der Detailansicht aufgerufen und stellt eine Anfrage
+an den Endpoint /addWatchlistItem mithilfe von Nutzeridentifikations-ID und der gewünschten Serien-ID,
+im Anwendungsfall stets der ID der zurzeit betrachteten Serie.
+```java
+@Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                //Festlegung der Parameter
+                params.put("wl_item", seriesID);
+                try {
+                    params.put("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                } catch (NullPointerException e) {
+                    Log.e("postWatchlist failed", e.toString());
+                }
+                params.put("lang", lang);
+                return params;
+            }
+```
 
 ## Authentifizierung
 TODO!
