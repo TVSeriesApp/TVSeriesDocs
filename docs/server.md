@@ -339,7 +339,7 @@ Response [JSON][json] bestehend aus der watchlist des Nutzers
 
 **POST**
 
-Fügt dem watchlist Array des Firestore Eintrags des entsprechenden Nutzers einen neuen Eintrag hinzu. Sendet außerdem bei Austrahlung einer neuen Folge der Serie eine Benachrichtigung
+Fügt dem watchlist Array des Firestore Eintrags des entsprechenden Nutzers einen neuen Eintrag hinzu.
 
 [JSON][json] Objekt welches mithilfe von POST geschickt wird.
 
