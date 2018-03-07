@@ -33,7 +33,7 @@ Beispiel für das Einloggen per E-mail:
 
 ---
 
-Nun haben Nutzende verschiedene Aktionen, die sie ausführen können. Zum einen können sie in der Navigationsleiste zu "Search" navigieren, um dort nach Serien zu suchen. Dabei können sie zu Ergebnissen aus der Ergebnisliste detailliertere Inforamtionen erhalten, wenn sie diese antippen. In dieser Detailansicht ist es den Nutzenden auch möglich Serien zur Watchlist hinzuzufügen.
+Nun haben Nutzende verschiedene Aktionen, die sie ausführen können. Zum einen können sie in der Navigationsleiste zu "Search" navigieren, um dort nach Serien zu suchen. Dabei können sie zu Ergebnissen aus der Ergebnisliste detailliertere Informationen erhalten, wenn sie diese antippen. In dieser Detailansicht ist es den Nutzenden auch möglich Serien zur Watchlist hinzuzufügen.
 
 Die Suche nach "It's always sunny" ergab folgende Ergebnisse:
 
