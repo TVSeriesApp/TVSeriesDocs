@@ -4,26 +4,27 @@
 ---
 
 ## Benachrichtigungen
-TODO ..?
 
-## Einführung
+### Einführung
 
 >Push-Benachrichtigungen sind Meldungen, die ohne das Öffnen der jeweiligen App auf dem Smartphone angezeigt werden.
 
 >Notifications, d.h. Benachrichtigungen über den Zeitpunkt des Erscheinens der neuesten Folge einer ausgewählten Serie, werden über [FCM](#FCM NOtifications) (Firebase Cloud Messaging) realisiert.
 
->Die Kommunikation mit der API zur Abfrage von Serieninformationen funktioniert über HTTP-GET-Abfragen (siehe [API](server.md#endpunkte-f%c3%bcr-den-server)).
+>Die Kommunikation mit der API zur Abfrage von Serieninformationen funktioniert über HTTP-Abfragen (siehe [API](server.md#API)).
 
-## FCM Notifications
+### FCM Notifications
 
->Damit Benutzer der App Benachrichtigungen erhalten können, muss der im Hintergrund laufende Benachrichtigungs-Service von Android angesprochen werden. Dies geschieht mithilfe von Firebase Cloud Messaging, einem Online-Service bereitgestellt von Google.
+>Damit Benutzer der App Benachrichtigungen erhalten können, muss der im Hintergrund laufende Benachrichtigungs-Service von Android angesprochen werden. Dies geschieht mithilfe von Firebase Cloud Messaging, einem Online-Service bereitgestellt von Google, welcher neben anderen hilfreichen Werkzeugen ein Framework für das Erstellen und Senden von Push-Nachrichten bereitstellt.
 
 Wenn aus der App eine Anfrage für eine Benachrichtigung (z.B. durch das Hinzufügen einer Serie in die eigene Watchlist) an unseren Server über eine HTTP-POST-Anfrage gesendet wird, reagiert dieser durch eine eigene Push-Benachrichtigung via Firebase.
 
-Im Falle einer Anfrage eines Benutzers mit eigenem Account, wird zuerst eine Anfrage an die Firebase Datenbank gestellt, um die persönliche Watchlist zu aktualisieren. Mit dem erhaltenen Token wird nun eine Anfrge an den Server gestellt, die Benachrichtung via FCM auszustellen. Zum Füllen ebendieser Benachrichtigung mit den richtigen Daten, bzw. um die korrekte Überlieferungszeit zu gewährleisten, fragt der Server diese Informationen durch weitere Anfragen wie [getSeriesbyId](API.md#getSeriesById) ab, und die Benachrichtigung wird mit dem gewollten Inhalt zur richtigen Zeit über FCM ausgestellt.
+Im Falle einer Anfrage eines Benutzers mit eigenem Account, wird zuerst eine Anfrage an die Firebase Datenbank gestellt, um die persönliche Watchlist zu aktualisieren. Mit dem erhaltenen Token wird nun eine Anfrage an den Server gestellt, die Benachrichtung via FCM auszustellen. Zum Füllen ebendieser Benachrichtigung mit den richtigen Daten, bzw. um die korrekte Überlieferungszeit zu gewährleisten, fragt der Server diese Informationen durch weitere Anfragen wie [getSeriesbyId](server.md#getSeriesById) ab, und die Benachrichtigung wird mit dem gewollten Inhalt zur richtigen Zeit über FCM ausgestellt.
 
 Dabei bietet Google die Firebase Console GUI zum Vereinfachten Testen dieses Vorganges, auch ohne eigenen Server. Diese Funktion kann auch benutzt werden, um einfach und schnell an bestimmte Nutzergruppen der App Benachrichtigungen zu versenden, z.B. nur an Nutzer in bestimmten Ländern oder Altersgruppen.
 ![](https://firebase.google.com/docs/cloud-messaging/images/messaging-overview.png)
+
+---
 
 ## GUI
 
@@ -175,5 +176,126 @@ public boolean onOptionsItemSelected(MenuItem item) {
 }
 ```
 
+### Methode getSeriesById(Context context, final String seriesID)
+Diese Methode steuert einen API-Endpunkt (siehe [API-Dokumentation](http://www.tvseriesapp.tk/#/server?id=getseriesbyid)) an, welcher bei Übergabe der Serien-ID (eindeutige Nummer zur Identifikation einer Serie in der Datenbank) Informationen über diese Serie in Form eines JSONObjects liefert. In dieser Methode wird außerdem eine detaillierte Listenansicht zur Anzeige einzelner Suchergebnisse nach Antippen eines Eintrags in der Suchergebnisliste (weiter unten erklärt) erstellt und angezeigt, was aus Zeitgründen nicht in einer eigenen Methode realisiert wurde. Für die Listenansicht wird hier zuerst eine ArrayList des Typs String erstellt und diese dann durch einen sogenannten [Adapter](https://developer.android.com/reference/android/widget/ArrayAdapter.html) auf die Listenansicht (ListView) übertragen. Das funktioniert vereinfacht so: Der Adapter "kennt" die Daten und "weiß", wie ein Listeneintrag für einen Datensatz aussehen muss, wird der Adapter also auf die Listenansicht angewendet passiert das Erstellen von Einträgen automatisch.
+```java
+final ListView lvD = findViewById(R.id.listViewDetailed); //Die Listenansicht ListViewDetailed finden und in Variable speichern
+
+ArrayList<String> arrayDetails = new ArrayList<>();
+arrayDetails.add("Title: " + (notNull((String) responseObject.get("seriesName")) ? responseObject.get("seriesName").toString() : "not provided"));
+arrayDetails.add("Alias: " + (aliases));
+arrayDetails.add("Overview: " + (notNull((String) responseObject.get("overview")) ? responseObject.get("overview").toString() : "not provided"));
+//... Strings für einzelne Informationen zur ArrayList hinzufügen 
+
+ArrayAdapter<String> adapterDetails = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, arrayDetails); 
+//Dem Adapter das gewünschte Layout für einen Listeneintrag sowie die ArrayList übergeben
+adapterDetails.notifyDataSetChanged();
+lvD.setAdapter(adapterDetails); // Den Adapter auf die Listenansicht anwenden
+```
+
+### Methode postNewSeriesByName(Context context, final String seriesName)
+Diese Methode steuert einen API-Endpunkt (siehe [API-Dokumentation](http://www.tvseriesapp.tk/#/server?id=getseriesbyname)) an, welcher bei Übergabe eines Such-Strings Serien mit zur Suchphrase passenden Titel in Form eines JSONArrays liefert. In dieser Methode wird außerdem Listenansicht zur Anzeige aller Suchergebnisse mit Titel und Handlungsübersicht erstellt und angezeigt, was aus Zeitgründen nicht in einer eigenen Methode realisiert wurde. Auch hier wird wieder ein Adapter verwendet ([simpleAdapter](https://developer.android.com/reference/android/widget/SimpleAdapter.html)), der ähnlich wie bei getSeriesById arbeitet, jedoch auch zwei oder mehr Daten pro Listeneintrag anwenden kann, die er aus einer [Hashmap](https://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html) bekommt. Der Listenansicht wird hier solange ein neuer Eintrag hinzugefügt, bis die Länge des JSONArrays und damit auch das Ende der Suchergebnisse erreicht ist.
+```java
+List<Map<String, String>> data = new ArrayList<>();
+for (int j = 0; j<arr.length();) {
+
+    Map<String, String> datum = new HashMap<>(7);
+
+    datum.put("seriesName", arr.getJSONObject(j).getString("seriesName"));
+    datum.put("overview", arr.getJSONObject(j).getString("overview"));
+    datum.put("id", arr.getJSONObject(j).getString("id"));
+    datum.put("network", arr.getJSONObject(j).getString("network"));
+    datum.put("firstAired", arr.getJSONObject(j).getString("firstAired"));
+    datum.put("status", arr.getJSONObject(j).getString("status"));
+    data.add(datum);
+
+
+    j++;
+}
+
+SimpleAdapter sAdapter = new SimpleAdapter(MainActivity.this, data,
+        android.R.layout.simple_list_item_2, // Vorlage für den Listeneintrag
+        new String[] {"seriesName", "overview"},
+        new int[] {android.R.id.text1, android.R.id.text2});
+```
+
+## Methode getWatchlist
+Die Methode getWatchlist wird bei jedem Besuch des Watchlist-Tabs, also auch bei Appstart ausgeführt. Sie fragt
+die nutzereigene, auf dem Server gespeicherte Watchlist ab, und lässt diese zugleich in einer ListView anzeigen.
+Außerdem wird auch ein FloatingActionButton zum Entfernen von Serien von der Watchlist erstellt bzw. als nicht
+sichtbar eingesetzt, je nachdem ob die Detailansicht ausgewählt ist oder nicht. Dabei fungiert sie im Rahmen des
+Watchlist-Tabs ähnlich wie postNewSeriesByName.
+```java
+findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                findViewById(R.id.textViewWatchlistLoadingInfo).setVisibility(View.GONE);
+                fabWatchlistR = findViewById(R.id.fabremoveFromWatchlist);
+                fabWatchlistR.setVisibility(View.INVISIBLE);
+                fabWatchlistR.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        try {
+                            removeWatchlistItem(getApplicationContext(), currentSeriesId);
+                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            if (currentFirebaseUser != null) {
+                                Toast.makeText(getApplicationContext(), "Successfully removed from Watchlist", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "An error occurred. Please try to log in again.", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            Log.e("REMOVE", "Unable to remove WatchlistItem: " + e.toString());
+                        }
+                    }
+                });
+                
+```
+
+## Methode postWatchlist
+Die Methode postWatchlist ist für das Hinzufügen einer momentan in der Detailansicht der Suche dargestellten
+Serie zuständig. Sie wird durch einen FloatingActionButton in der Detailansicht aufgerufen und stellt eine Anfrage
+an den Endpoint /addWatchlistItem mithilfe von Nutzeridentifikations-ID und der gewünschten Serien-ID,
+im Anwendungsfall stets der ID der zurzeit betrachteten Serie.
+```java
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                //Festlegung der Parameter
+                params.put("wl_item", seriesID);
+                try {
+                    params.put("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                } catch (NullPointerException e) {
+                    Log.e("postWatchlist failed", e.toString());
+                }
+                params.put("lang", lang);
+                return params;
+            }
+```
+## Methode postToken
+Diese Methode sendet ein Firebase-Device-Token, d.h. die Identifizierung einer Instanz der App auf einem Gerät.
+Dabei hat jedes Gerät sein eigenes Device-Token, und dient somit in Kombination mit der ID des Nutzers in der
+Datenbank (der UID) als eindeutige Identifizierung und folglich Verknüpfung von Benutzern und ihren Geräten.
+Benutzt wird die Methode um die erfolgreiche Herstellung einer weiteren Kommunikation zwischen Server und App
+zu gewährleisten. Wie auch bei anderen HTTP-Anfrage-Methoden wird auch hier die Methode bei Fehlschlag bis zu vier
+Male erneut aufgerufen, um sicherzustellen dass der Server sich nicht mehr im Sleep-Modus befindet, d.h. inaktiv ist.
+```java
+@Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("POST", error.toString());
+
+                if (tolerance < 4) {
+                    try {
+                        postToken(getApplicationContext());
+                    } catch (JSONException e) {
+                        Log.e("POST", e.toString());
+                    }
+                    tolerance++;
+                } else {
+                    Log.e("Too many Volley Errors, stopped trying", error.toString());
+                }
+
+            }
+``
+
+
+    
+    
 ## Authentifizierung
 TODO!
