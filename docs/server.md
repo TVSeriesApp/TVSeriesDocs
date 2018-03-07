@@ -5,7 +5,7 @@
 ## Einführung
 
 Um die benötigten Informationen über die Serien unsere App zu bekommen, benutzen wir die für uns kostenlose [tv-db API][api]. Hinter dieser API (Appilcation Programming Interface, dt. Schnittstelle zur Anwenderprogrammierung) steht die Datenbank von [www.thetvdb.com][tvdb], welche eine große Anzahl an Datensätzen über viele verschiedene Serien enthält.
-Allerdings hatte wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS][cors] Protokolls.  Also stellten wir [die Frage: "How do I avoid getting the HTTP status code 405?" auf der Q&A Seite Stackoverflow][stack]. Die Antworten halfen uns sehr bei der Lösung des Problems
+Allerdings hatte wir Probleme die API direkt zu benutzen, aufgrund des sogenannten [CORS][cors] Protokolls.  Also stellten wir [eine Frage auf der Q&A Seite Stackoverflow][stack]. Die Antworten halfen uns sehr bei der Lösung des Problems
 
 Um das Problem zu lösen, entschieden wir uns dazu einen eigenen Server zu erstellen, welcher die Anfragen an den TVDB Server weiterleitet.
 
@@ -388,6 +388,11 @@ Rückmeldung wenn der Eintrag nicht bei Firestore vorliegt.
 `Item not in the Watchlist!`
 
 #### /watchListNotif <img src="./images/firestore5.png" height="40" width="40"> <img src="./images/fcm.png" alt="Smiley face" height="40" width="40">
+
+![](./images/daten22.png)
+
+*Abb. zeigt ein Datenflussdiagramm für jegliche Interaktionen mit der TVDB*
+*Peile von rechts nach links zeigen eine Anfrage und Pfeile von rechts nach links stellen eine Antwort dar*
 
 **POST**
 
