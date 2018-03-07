@@ -265,11 +265,9 @@ Response [JSON][json] bestehend aus einer Episode
 }
 ```
 
-### Interaktion mit Firebase
+### Interaktion mit Firebase 
 
-### Interaktion mit FCM
-
-#### /fcm
+#### /fcm <img src="./images/fcm.png" alt="Smiley face" height="20" width="20">
 
 **POST**
 

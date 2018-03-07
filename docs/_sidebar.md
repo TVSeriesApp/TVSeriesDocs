@@ -1,4 +1,5 @@
 * [Einführung](README.md)
+* [Firebase](firebase.md)
 * [Server](server.md)
 * [App](app.md)
 * [Projektverlauf](projektverlauf.md)
