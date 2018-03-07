@@ -4,7 +4,6 @@
 ---
 
 ## Benachrichtigungen
-TODO ..?
 
 ### Einführung
 
@@ -12,15 +11,15 @@ TODO ..?
 
 >Notifications, d.h. Benachrichtigungen über den Zeitpunkt des Erscheinens der neuesten Folge einer ausgewählten Serie, werden über [FCM](#FCM NOtifications) (Firebase Cloud Messaging) realisiert.
 
->Die Kommunikation mit der API zur Abfrage von Serieninformationen funktioniert über HTTP-GET-Abfragen (siehe [API](server.md#API)).
+>Die Kommunikation mit der API zur Abfrage von Serieninformationen funktioniert über HTTP-Abfragen (siehe [API](server.md#API)).
 
 ### FCM Notifications
 
->Damit Benutzer der App Benachrichtigungen erhalten können, muss der im Hintergrund laufende Benachrichtigungs-Service von Android angesprochen werden. Dies geschieht mithilfe von Firebase Cloud Messaging, einem Online-Service bereitgestellt von Google.
+>Damit Benutzer der App Benachrichtigungen erhalten können, muss der im Hintergrund laufende Benachrichtigungs-Service von Android angesprochen werden. Dies geschieht mithilfe von Firebase Cloud Messaging, einem Online-Service bereitgestellt von Google, welcher neben anderen hilfreichen Werkzeugen ein Framework für das Erstellen und Senden von Push-Nachrichten bereitstellt.
 
 Wenn aus der App eine Anfrage für eine Benachrichtigung (z.B. durch das Hinzufügen einer Serie in die eigene Watchlist) an unseren Server über eine HTTP-POST-Anfrage gesendet wird, reagiert dieser durch eine eigene Push-Benachrichtigung via Firebase.
 
-Im Falle einer Anfrage eines Benutzers mit eigenem Account, wird zuerst eine Anfrage an die Firebase Datenbank gestellt, um die persönliche Watchlist zu aktualisieren. Mit dem erhaltenen Token wird nun eine Anfrge an den Server gestellt, die Benachrichtung via FCM auszustellen. Zum Füllen ebendieser Benachrichtigung mit den richtigen Daten, bzw. um die korrekte Überlieferungszeit zu gewährleisten, fragt der Server diese Informationen durch weitere Anfragen wie [getSeriesbyId](server.md#getSeriesById) ab, und die Benachrichtigung wird mit dem gewollten Inhalt zur richtigen Zeit über FCM ausgestellt.
+Im Falle einer Anfrage eines Benutzers mit eigenem Account, wird zuerst eine Anfrage an die Firebase Datenbank gestellt, um die persönliche Watchlist zu aktualisieren. Mit dem erhaltenen Token wird nun eine Anfrage an den Server gestellt, die Benachrichtung via FCM auszustellen. Zum Füllen ebendieser Benachrichtigung mit den richtigen Daten, bzw. um die korrekte Überlieferungszeit zu gewährleisten, fragt der Server diese Informationen durch weitere Anfragen wie [getSeriesbyId](server.md#getSeriesById) ab, und die Benachrichtigung wird mit dem gewollten Inhalt zur richtigen Zeit über FCM ausgestellt.
 
 Dabei bietet Google die Firebase Console GUI zum Vereinfachten Testen dieses Vorganges, auch ohne eigenen Server. Diese Funktion kann auch benutzt werden, um einfach und schnell an bestimmte Nutzergruppen der App Benachrichtigungen zu versenden, z.B. nur an Nutzer in bestimmten Ländern oder Altersgruppen.
 ![](https://firebase.google.com/docs/cloud-messaging/images/messaging-overview.png)
@@ -220,7 +219,36 @@ SimpleAdapter sAdapter = new SimpleAdapter(MainActivity.this, data,
         new int[] {android.R.id.text1, android.R.id.text2});
 ```
 
+## Methode getWatchlist
+Die Methode getWatchlist wird bei jedem Besuch des Watchlist-Tabs, also auch bei Appstart ausgeführt. Sie fragt
+die nutzereigene, auf dem Server gespeicherte Watchlist ab, und lässt diese zugleich in einer ListView anzeigen.
+Außerdem wird auch ein FloatingActionButton zum Entfernen von Serien von der Watchlist erstellt bzw. als nicht
+sichtbar eingesetzt, je nachdem ob die Detailansicht ausgewählt ist oder nicht. Dabei fungiert sie im Rahmen des
+Watchlist-Tabs ähnlich wie postNewSeriesByName.
+```java
+findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                findViewById(R.id.textViewWatchlistLoadingInfo).setVisibility(View.GONE);
+                fabWatchlistR = findViewById(R.id.fabremoveFromWatchlist);
+                fabWatchlistR.setVisibility(View.INVISIBLE);
+                fabWatchlistR.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        try {
+                            removeWatchlistItem(getApplicationContext(), currentSeriesId);
+                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            if (currentFirebaseUser != null) {
+                                Toast.makeText(getApplicationContext(), "Successfully removed from Watchlist", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "An error occurred. Please try to log in again.", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            Log.e("REMOVE", "Unable to remove WatchlistItem: " + e.toString());
+                        }
+                    }
+                });
+                
+```
 
+   
 
 ## Authentifizierung
 TODO!
