@@ -57,17 +57,17 @@ Anmerkung: Die angegebenen Anweisungen wurden unter Windows 10 getestet. Wir geb
 + TVDB API Key ([Hier][api] erhältlich)
 + Ein eine Konsole bzw. eine Kommandozeilensoftware, z.B. CMD oder PowerShell
 
-### 1.
+#### 1.
 
    Navigieren Sie in der Konsole ihrer Wahl in das Verzeichnis, in das Sie das Repository kopieren möchten.
 
    Führen Sie die Anweisung `git clone https://github.com/TVSeriesApp/tvseries-server.git` aus.
 
-### 2.
+#### 2.
 
    Führen Sie nun erst die Anweisung ``cd tvseries-server` und dann die Anweisung `npm i` aus. Dies sorgt dafür das alle dependencies lokal gespeichert werden.
 
-### 3.
+#### 3.
 
 Erstellen Sie nun eine Datei mit dem Name `.env` im Verzeichnis tvseries-server. In dieser Datei sollte sich folgendes befinden:
 
@@ -77,11 +77,11 @@ TVDB_API_KEY=
 
 Hinter dem "=" fügen Sie einfach ihren TVDB API Key ein.
 
-### 4.
+#### 4.
 
 Fügen Sie nun ihr `adminsdk.json` in das Verzeichnis `tvseries-server/POST/firebase/.assets` ein. Die Datei sollte auch genau diesen Name tragen.
 
-### 5.
+#### 5.
 
 Sie können nun mit der Anweisung `npm start` den Server starten und es wird der benutzte Port in die Konsole geloggt. Anfragen können nun an den Server gestellt werden. Zu empfehlende Software hierzu ist z.B. [Postman][post]
 
