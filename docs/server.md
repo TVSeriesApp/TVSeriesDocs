@@ -44,6 +44,47 @@ Der Server empfängt JSON Objekte, welche allerdings in Form eines einzigen Stri
 
 Der Server antwortet ebenfalls mit JSON Objekten, welche allerdings in Form eines einzigen Strings gesendet werden. Um diese Objekte programmatisch weiterzuverwenden müssen sie zuerst [geparst](https://de.wikipedia.org/wiki/Parser) werden.
 
+## Anwenderdokumentation
+
+Anmerkung: Die angegebenen Anweisungen wurden unter Windows 10 getestet. Wir geben keine Garantie, dass sie unter einem anderen Btriebssystem funktionieren.
+
+### Vorraussetzungen
+
++ [Node js Version 8 ][node]
++ [Versionsverwaltungssoftware Git][git]
++ Ein Texteditor (Empfohlen wird [VSCode][vscode] von  Microsoft)
++ Eine adminsdk.json Datei eines Google Firebase Projekts ([Anleitung][adminsdk] auf Englisch)
++ TVDB API Key ([Hier][api] erhältlich)
++ Ein eine Konsole bzw. eine Kommandozeilensoftware, z.B. CMD oder PowerShell
+
+### 1.
+
+   Navigieren Sie in der Konsole ihrer Wahl in das Verzeichnis, in das Sie das Repository kopieren möchten.
+
+   Führen Sie die Anweisung `git clone https://github.com/TVSeriesApp/tvseries-server.git` aus.
+
+### 2.
+
+   Führen Sie nun erst die Anweisung ``cd tvseries-server` und dann die Anweisung `npm i` aus. Dies sorgt dafür das alle dependencies lokal gespeichert werden.
+
+### 3.
+
+Erstellen Sie nun eine Datei mit dem Name `.env` im Verzeichnis tvseries-server. In dieser Datei sollte sich folgendes befinden:
+
+```
+TVDB_API_KEY=
+```
+
+Hinter dem "=" fügen Sie einfach ihren TVDB API Key ein.
+
+### 4.
+
+Fügen Sie nun ihr `adminsdk.json` in das Verzeichnis `tvseries-server/POST/firebase/.assets` ein. Die Datei sollte auch genau diesen Name tragen.
+
+### 5.
+
+Sie können nun mit der Anweisung `npm start` den Server starten und es wird der benutzte Port in die Konsole geloggt. Anfragen können nun an den Server gestellt werden. Zu empfehlende Software hierzu ist z.B. [Postman][post]
+
 ## Dateistruktur
 
 ### Über Module in node.js
@@ -392,6 +433,7 @@ Rückmeldung wenn der Eintrag nicht bei Firestore vorliegt.
 ![](./images/daten22.png)
 
 *Abb. zeigt ein Datenflussdiagramm für jegliche Interaktionen mit der TVDB*
+
 *Peile von rechts nach links zeigen eine Anfrage und Pfeile von rechts nach links stellen eine Antwort dar*
 
 **POST**
@@ -434,3 +476,8 @@ Rückmeldung wenn der Eintrag nicht bei Firestore vorliegt.
 [repo]:https://de.wikipedia.org/wiki/Repository
 [npm]:https://www.npmjs.com/
 [strings]:https://de.wikipedia.org/wiki/Query_String
+[git]:https://git-scm.com/download/win
+[vscode]:https://code.visualstudio.com/
+[adminsdk]:https://firebase.google.com/docs/admin/setup
+[api]:https://www.thetvdb.com/?tab=apiregister
+[post]:https://www.getpostman.com/
